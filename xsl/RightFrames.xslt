@@ -10,6 +10,7 @@
 			<head>
 				<title>dfdf</title>
 				<link rel="stylesheet" href="../../../css/rightside.css" type="text/css" />
+				<script type="text/javascript" src="../../../js/jquery-1.4.3.js"></script>
 				<script type="text/javascript" src="../../../js/rightside.js"></script>
 			</head>
 			<xsl:apply-templates />

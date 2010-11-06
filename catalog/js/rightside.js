@@ -96,11 +96,6 @@ function bt2mid(){
 
 
 
-
-
-
-
-
 document.ondragstart = new Function("return false");
 
 if (!top.sessionstorage) top.sessionstorage= [];

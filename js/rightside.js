@@ -1,3 +1,4 @@
+
 if(navigator.appName != 'Netscape'){
 	parent.frames[1].document.getElementById('zzk').style.width='100%';
 	parent.frames[1].document.getElementById('zzk').style.height='93%';
@@ -56,25 +57,6 @@ function bt2mid(){
 		parent.frames[1].document.getElementById('zzk').style.height='93%';
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -218,7 +200,18 @@ window.onload = function() {
 
     }
 
+
+
+
+
 }
+
+
+/*
+$(body).bind('resize', function(e){
+	alert('qwe');
+})
+*/
 /*
 document.onclick= function(e) {
 

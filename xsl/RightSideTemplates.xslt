@@ -60,17 +60,16 @@
 				<table id="bot-bot">
 					<tr>				
 						<td id="divider">
+							<img class="to-max" id="maximum" src="../../../img/front/to-max.gif" alt="[]" onclick="bot2top();" />
 							<img class="to-minimax" id="medium" src="../../../img/front/to-minimax.gif" alt="=" onclick="bt2mid();" style="display:none;" />
 							<img class="to-min" id="minimum" src="../../../img/front/to-min.gif" alt="_" onclick="top2bot();" />
-							
-							
+
 							<xsl:if test="current-system-title!= 'hidden' or not(current-system-title)">
 								<div id="fzag">
 									<xsl:value-of select="current-system-title"/>
 								</div>
 							</xsl:if>
-							
-							
+
 						</td>
 					</tr>
 					<tr>
