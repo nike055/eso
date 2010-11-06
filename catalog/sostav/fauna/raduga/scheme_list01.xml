@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video></video><scheme></scheme><model></model></tabs><type>scheme</type>
+	<content>
+		<svg>../../../../img/schemes/ra_scheme_list01_all.svg</svg>
+	</content>
+</frame>
+

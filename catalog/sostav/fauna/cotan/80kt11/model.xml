@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="../../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video>hidden</video><scheme></scheme><model></model></tabs><type>model</type>
+	<current-system-title>Система "Котангенс"</current-system-title>
+
+	<content>
+		<svg>../../../../../img/models/80KT11.svg</svg>
+	</content>
+</frame>
+

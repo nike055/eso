@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video>hidden</video><scheme>hidden</scheme><model></model></tabs><type>photo</type>
+	<content>
+		<shortcuts>
+			<group>
+			  <title></title>
+				<shortcut>
+					<link>photo_000.xml</link>
+					<title>01</title>
+					<image>../../../../img/fotos/img/mini/kt_000.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>photo_001.xml</link>
+					<title>02</title>
+					<image>../../../../img/fotos/img/mini/kt_001.jpg</image>
+				</shortcut>	
+				<shortcut>
+					<link>photo_002.xml</link>
+					<title>03</title>
+					<image>../../../../img/fotos/img/mini/kt_002.jpg</image>
+				</shortcut>																																									
+			</group>
+		</shortcuts>
+	</content>
+</frame>

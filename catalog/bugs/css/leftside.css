@@ -1,0 +1,79 @@
+body {
+	background-color: #FFF5EE;
+	border-collapse: collapse;
+}
+div.header1_list, div.header2_list, div.header3_list{
+	display: none;
+}
+div.first_div {
+	margin-top: -10px; 
+}
+div.header1
+{ 
+	background-image: url(../img/leftmenu/lmenu-offcaps.gif);
+	background-position: center;
+	background-repeat: repeat-x; 
+	line-height: 0px;
+	margin-top: -6px; 
+	font-weight: bold;
+	padding-left: 0px;
+	cursor: pointer;
+}
+
+td.header1, div.header1 {
+	color: #FFFFFF;
+	font-family: Tahoma;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+div.header2
+{
+	color: #1b68af;
+	line-height: 30px; 
+	font-family: Tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+    /*width: 500px;*/
+	margin-top: -5px;  
+	margin-left: 10px;
+	padding-left: 15px; 
+	background-image: url('../img/leftmenu/lmenu-close.gif'); 
+	background-repeat: no-repeat;
+	background-position: center left;
+	cursor: pointer;
+}
+
+div.header3
+{
+	color: #1b68af;
+	line-height: 30px; 
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-weight: bold;
+    /*width: 500px;*/
+	margin-top: -7px;  
+	margin-left: 20px;
+	padding-left: 15px; 
+	background-image: url('../img/leftmenu/lmenu-end-first.gif'); 
+	background-repeat: no-repeat;	
+	background-position: center left;
+	cursor: pointer;
+}
+
+div.header4
+{
+	color: #1b68af;
+	line-height: 30px; 
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-weight: bold;
+    /*width: 500px;*/
+	margin-top: -7px;  
+	margin-left: 30px;
+	padding-left: 15px; 
+	background-image: url('../img/leftmenu/lmenu-end-first.gif'); 
+	background-repeat: no-repeat;	
+	background-position: center left;
+	cursor: pointer;
+}

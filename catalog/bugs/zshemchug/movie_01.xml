@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video>hidden</video><scheme></scheme><model></model></tabs><type>model</type>
+	<content>
+		<svg>../../../img/movies/movie_80JM-01.swf</svg>
+	</content>
+</frame>
+

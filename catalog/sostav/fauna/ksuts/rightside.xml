@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/RightFrames.xslt"?>
+<vframes>
+	<balance>50%,*</balance>
+	<top>model.xml</top>
+	<bot>descr.xml</bot>
+</vframes>

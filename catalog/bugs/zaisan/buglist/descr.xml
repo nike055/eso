@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/RightBottomSide.xslt"?>
+<frame>
+	<type>descr</type>
+	<content>
+		<html>
+
+<form>
+
+<div id="radio_level1">
+<h2>Неисправность прибора:</h2>
+<input type="radio" name="level1" id="level1_1" value="grp1" /><label for="level1_1">80ЗС1</label><br/>
+<input type="radio" name="level1" id="level1_2" value="grp2"/><label for="level1_2">803С5</label><br/>
+<input type="radio" name="level1" id="level1_3" value="grp3"/><label for="level1_3">80ЗС2-2 … 80ЗС2-5, 80ЗС2-7</label><br/>
+<input type="radio" name="level1" id="level1_4" value="grp4"/><label for="level1_4">80ЗС2-10</label><br/>
+<input type="radio" name="level1" id="level1_5" value="grp5"/><label for="level1_5">80ЗС2-1, 80ЗС2-12</label><br/>
+<input type="radio" name="level1" id="level1_6" value="grp6"/><label for="level1_6">Общие неисправности</label><br/>
+<br/>
+<div id="GoRadioLevel1"/>
+</div>
+
+<div id="radio_level2" style="display:none;">
+<div id="grp1" style="display:none;">
+<h2>Вид неисправности прибора 80ЗС1:</h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#1_1"/></td><td>Прибор 80ЗС1:  не подается питание в стойку. </td></tr>
+<tr><td><input type="radio" value="#1_2"/></td><td>Нарушена работа одного из каналов питания </td></tr>
+<tr><td><input type="radio" value="#1_3"/></td><td>Не индицируется работа одного из каналов питания.</td></tr>
+<tr><td><input type="radio" value="#1_4"/></td><td>Нет изображения на мониторе МПМ-18.1101А</td></tr>
+<tr><td><input type="radio" value="#1_5"/></td><td>Нет изображения на экране модуля М976-001 на панели 80ЗС1БП. </td></tr>
+<tr><td><input type="radio" value="#1_6"/></td><td>На панели 80ЗС1БС2 не подсвечивается ни один из индикаторов кнопок.</td></tr>
+<tr><td><input type="radio" value="#1_7"/></td><td>При работе с устройством VP-2500 курсор не двигается по экрану. </td></tr>
+<tr><td><input type="radio" value="#1_8"/></td><td>Не вращаются вентиляторы блока БВ101. </td></tr>
+</table>
+</div>
+
+<div id="grp2" style="display:none;">
+<h2>Вид неисправности прибора 80ЗС5: </h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#2_1"/></td><td>Отсутствие любого из выходных напряжений  </td></tr>
+<tr><td><input type="radio" value="#2_2"/></td><td>В режиме КЛЭ код ОШИБКА 0*1.  </td></tr>
+<tr><td><input type="radio" value="#2_3"/></td><td>В режиме КЛЭ код ОШИБКА 0*2. </td></tr>
+<tr><td><input type="radio" value="#2_4"/></td><td>В режиме КЛЭ код ОШИБКА 0*4. </td></tr>
+<tr><td><input type="radio" value="#2_5"/></td><td>В режиме КСИ выявлена цепь с пониженным сопротивлением изоляции.  </td></tr>
+<tr><td><input type="radio" value="#2_6"/></td><td>В режиме РКД выявлен датчик не прошедший проверку  </td></tr>
+</table>
+</div>
+
+<div id="grp3" style="display:none;">
+<h2>Вид неисправности в приборах 80ЗС2-2 … 80ЗС2-5, 80ЗС2-7: </h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#3_1"/></td><td>Нет изображения на экране. </td></tr>
+</table>
+</div>
+
+<div id="grp4" style="display:none;">
+<h2>Вид неисправности  прибора 80ЗС2-10: </h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#4_1"/></td><td>Отсутствие любого из выходных напряжений </td></tr>
+<tr><td><input type="radio" value="#4_2"/></td><td>При появлении аварийного сигнала на мнемосхеме прибора, нет звукового сигнала</td></tr>	
+</table>
+</div>
+
+<div id="grp5" style="display:none;">
+<h2>Вид неисправности в приборах 80ЗС2-1, 80ЗС2-12:</h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#5_1"/></td><td>При появлении аварийного сигнала на мнемосхеме приборов, нет звукового сигнала. </td></tr>
+<tr><td><input type="radio" value="#5_2"/></td><td>В приборе 80ЗС2-1 не подсвечивается индикатор «ПИТАНИЕ». </td></tr>	
+<tr><td><input type="radio" value="#5_3"/></td><td>В приборе 80ЗС2-12 не подсвечивается индикатор «ПИТАНИЕ» </td></tr>	
+</table>
+</div>
+
+<div id="grp6" style="display:none;">
+<h2>Общие неисправности </h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#6_1"/></td><td>На экране монитора имеется АПС об отсутствии в сети информационного обмена какого-либо прибора.  </td></tr>	
+<tr><td><input type="radio" value="#6_2"/></td><td>В режиме ТЕСТ модуль в приборе отмечен знаком колокола. </td></tr>	
+<tr><td><input type="radio" value="#6_3"/></td><td>Мнемознак сигнализации положения арматуры светится прерывистым желтым цветом. </td></tr>	
+<tr><td><input type="radio" value="#6_4"/></td><td>Мнемознак сигнализации состояния параметра светится прерывистым желтым цветом.  </td></tr>	
+</table>
+</div>
+
+<br/>
+<div id="GoRadioLevel2"/>
+</div>
+
+</form>
+			</html>
+	</content>
+</frame>
+
+
+

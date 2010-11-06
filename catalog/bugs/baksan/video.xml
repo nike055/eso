@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video></video><scheme></scheme><model></model></tabs><type>video</type>
+	<content>
+        <shortcuts>
+			<group>
+			  <title></title>
+				<shortcut>
+					<link>bk_video_24.xml</link>
+					<title>01</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict24.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_25.xml</link>
+					<title>02</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict25.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_26.xml</link>
+					<title>03</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict26.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_27.xml</link>
+					<title>04</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict27.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_28.xml</link>
+					<title>05</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict28.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_29.xml</link>
+					<title>06</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict29.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_30.xml</link>
+					<title>07</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict30.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>bk_video_31.xml</link>
+					<title>08</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict31.jpg</image>
+				</shortcut>																												
+				<shortcut>
+					<link>bk_video_32.xml</link>
+					<title>09</title>
+					<image>../../../img/fotos/videoframes/img/mini/bk_vframe_pict32.jpg</image>
+				</shortcut>																																																																																															
+			</group>
+		</shortcuts>
+	</content>
+</frame>

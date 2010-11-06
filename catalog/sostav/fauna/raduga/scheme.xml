@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video></video><scheme></scheme><model></model></tabs><type>scheme</type>
+	<content>
+		<shortcuts>
+			<group>
+			  <title></title>
+				<shortcut>
+					<link>scheme_list01.xml</link>
+					<title>01</title>
+					<image>../../../../img/schemes/mini/ra_list01.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>scheme_list02.xml</link>
+					<title>02</title>
+					<image>../../../../img/schemes/mini/ra_list02.jpg</image>
+				</shortcut>	
+				<shortcut>
+					<link>scheme_list03.xml</link>
+					<title>03</title>
+					<image>../../../../img/schemes/mini/ra_list03.jpg</image>
+				</shortcut>	
+				<shortcut>
+					<link>scheme_list04.xml</link>
+					<title>04</title>
+					<image>../../../../img/schemes/mini/ra_list04.jpg</image>
+				</shortcut>																																							
+			</group>
+		</shortcuts>
+	</content>
+</frame>

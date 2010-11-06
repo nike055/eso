@@ -1,0 +1,121 @@
+html,body,table,td,th,img,select,input,p,div,form,ul,li,form,select,dl,dt,dd,h1,h2,h3,h4,h5,h6
+	{padding: 0; margin: 0; font: normal 12px Tahoma, sans-serif;}
+table,img {border: none;}
+td {vertical-align: top;}
+li {list-style: none;}
+
+
+#header
+{
+	background: url('../img/header/header-bg.gif') repeat-x;
+	text-align: center;
+	font-size: 20px;
+	color: #A1A0A0;
+	overflow: hidden;
+	font-family: "Arial", sans-serif;
+}
+#header .alert
+{
+	color: white;
+}
+#header small
+{
+	position: relative;
+	top: -16px;
+	font-size: 16px;
+	font-weight: bold;
+	white-space: pre;
+}
+#header small .space
+{
+	width: 48px;
+}
+
+#maintitle
+{
+	width:325px;
+	height: 60px;
+	display: block;
+}
+
+#mmenu
+{
+	float:right;
+	width: 345px;
+	height: 60px;
+	background: url('../img/header/mmenu-bg.gif') no-repeat;
+	padding: 0;
+	margin: 0;
+}
+#mmenu li
+{
+	float: right;
+	padding: 20px 7px 10px 7px;
+	margin: 0;
+	background: url('../img/header/mmenu-li.gif') 100% 50% no-repeat;
+}
+#mmenu a, #mmenu span
+{
+	color: white;
+	display: block;
+	padding-right: 22px;
+	line-height: 18px;
+	padding-bottom: 3px;
+}
+#mmenu a:hover
+{
+	color: lightblue;
+}
+#mmexit
+{
+	background: none !important;
+}
+#mmexit a
+{
+	background: url('../img/header/mmexit.gif') 100% 50% no-repeat;
+}
+#mmhelp a
+{
+	background: url('../img/header/mmhelp.gif') 100% 50% no-repeat;
+}
+#mmabout a
+{
+	background: url('../img/header/mmabout.gif') 100% 50% no-repeat;
+}
+#mmsearch a
+{
+	background: url('../img/header/mmsearch.gif') 100% 50% no-repeat;
+	cursor: pointer;
+	text-decoration: underline;
+}
+#mmsearch form
+{
+	position: absolute;
+}
+#mmsearch form input
+{
+	position: relative;
+	/*left: -35px;*/
+	padding: 0 4px;
+	line-height: 15px;
+}
+#mmsearch form .submit
+{
+	top: -22px;
+	left: 90px;
+	width: 50px;
+}
+#mmsearch.off form
+{
+	display: none;
+}
+
+#subheader 
+{
+	float: right;
+	display: none;
+}
+#logo
+{
+	float: left;
+}

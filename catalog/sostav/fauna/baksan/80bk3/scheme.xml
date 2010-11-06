@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video>hidden</video><scheme></scheme><model></model></tabs><type>scheme</type>
+	<content>
+		<shortcuts>
+			<group>
+			  <title></title>
+				<shortcut>
+					<link>scheme_list01.xml</link>
+					<title>01</title>
+					<image>../../../../../img/schemes/mini/bk_list01s.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>scheme_list02.xml</link>
+					<title>02</title>
+					<image>../../../../../img/schemes/mini/bk_list02s.jpg</image>
+				</shortcut>	
+				<shortcut>
+					<link>scheme_list03.xml</link>
+					<title>03</title>
+					<image>../../../../../img/schemes/mini/bk_list03s.jpg</image>
+				</shortcut>	
+				<shortcut>
+					<link>scheme_list04.xml</link>
+					<title>04</title>
+					<image>../../../../../img/schemes/mini/bk_list04s.jpg</image>
+				</shortcut>	
+				<shortcut>
+					<link>scheme_list05.xml</link>
+					<title>05</title>
+					<image>../../../../../img/schemes/mini/bk_list05s.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>scheme_list06.xml</link>
+					<title>06</title>
+					<image>../../../../../img/schemes/mini/bk_list06s.jpg</image>
+				</shortcut>
+				<shortcut>
+					<link>scheme_list07.xml</link>
+					<title>07</title>
+					<image>../../../../../img/schemes/mini/bk_list07.jpg</image>
+				</shortcut>
+
+																																							
+			</group>
+		</shortcuts>
+	</content>
+</frame>

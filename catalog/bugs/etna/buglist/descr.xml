@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/RightBottomSide.xslt"?>
+<frame>
+	<type>descr</type>
+	<content>
+		<html>
+
+<form>
+
+<div id="radio_level1">
+<h2>Неисправность прибора:</h2>
+<input type="radio" name="level1" id="level1_1" value="grp1" /><label for="level1_1">80ЭТ1-1</label><br/>
+<input type="radio" name="level1" id="level1_2" value="grp2"/><label for="level1_2">80ЭТ1-2</label><br/>
+<input type="radio" name="level1" id="level1_3" value="grp3"/><label for="level1_3">80ЭТЗ-1, 80ЭТЗ-1-1</label><br/>
+<br/>
+<div id="GoRadioLevel1"/>
+</div>
+
+<div id="radio_level2" style="display:none;">
+<div id="grp1" style="display:none;">
+<h2>Вид неисправности прибора 80ЭТ1-1: </h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#1_1"/></td><td>Не подается питание на прибор</td></tr>
+<tr><td><input type="radio" value="#1_2"/></td><td>Нет изображения на мониторе МПМ-18.1101А</td></tr>
+<tr><td><input type="radio" value="#1_3"/></td><td>Нет изображения на экране БП (модуль М977-001)</td></tr>
+<tr><td><input type="radio" value="#1_4"/></td><td>Не горят индикаторы кнопок «КАНАЛ 1» и «КАНАЛ 2», группы «ПИТАНИЕ СИСТЕМЫ» на БН</td></tr>
+<tr><td><input type="radio" value="#1_5"/></td><td>На БН не подсвечи¬вается ни один из ин¬дикаторов «ГЭУ», «ЭСК», «ОКС», «ДВ», «ИМС», «СОЭЖ», кнопки «ИСПРАВНО» и «ОТКЛЮЧЕНИЕ СИСТЕМ»</td></tr>
+<tr><td><input type="radio" value="#1_6"/></td><td>Не подсвечивается один или несколько индикато¬ров на БН: «ГЭУ», «ЭСК», «ОКС», «ДВ», «ИМС», «СОЭЖ», «ИСПРАВНО» и кнопки «ОТКЛЮЧЕНИЕ СИСТЕМ»</td></tr>
+<tr><td><input type="radio" value="#1_7"/></td><td>Загрузка модуля М270-004 останавливается на пусковом тесте</td></tr>
+<tr><td><input type="radio" value="#1_8"/></td><td>Загрузка модуля М977-001 останавли¬вается на пусковом тесте</td></tr>
+<tr><td><input type="radio" value="#1_9"/></td><td>Нет связи с одним или всеми сопрягаемыми приборами основного (резервного) канала Ethernet)</td></tr>
+<tr><td><input type="radio" value="#1_10"/></td><td>Нет связи с одним или всеми сопрягае¬мыми приборами по каналу обмена типа ГОСТ 26765.52-87</td></tr>
+<tr><td><input type="radio" value="#1_11"/></td><td>Не вращаются вентиляторы блока БВ101</td></tr>
+</table>
+</div>
+
+<div id="grp2" style="display:none;">
+<h2>Вид неисправности прибора 80ЭТ1-2: </h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#2_1"/></td><td>Не подается питание на прибор</td></tr>
+<tr><td><input type="radio" value="#2_2"/></td><td>Нет изображения на мониторе МПМ-18.1101А</td></tr>
+<tr><td><input type="radio" value="#2_3"/></td><td>Нет изображения на экране   БП    (модуль М977-002)</td></tr>
+<tr><td><input type="radio" value="#2_4"/></td><td>Не горят индикаторы кнопок «КАНАЛ 1» и «КАНАЛ 2» группы «ПИТАНИЕ СИСТЕМЫ» на БН</td></tr>
+<tr><td><input type="radio" value="#2_5"/></td><td>На БН не подсвечивается ни один из индикаторов: ОКС», «ЭСК», «ГЭУ», «ДВ», «ИМС», «СОЭЖ», кнопка «ИСПРАВНО»</td></tr>
+<tr><td><input type="radio" value="#2_6"/></td><td>Не подсвечивается какой-нибудь или несколько из индикаторов на БН: «ОКС», «ЭСК», «ГЭУ», «ДВ», «ИМС», «СОЭЖ», кнопка «ИСПРАВНО»</td></tr>
+<tr><td><input type="radio" value="#2_7"/></td><td>Загрузка модуля М270-005 останавливается на пусковом тесте</td></tr>
+<tr><td><input type="radio" value="#2_8"/></td><td>Загрузка модуля М977-002 останавливается на пусковом тесте</td></tr>
+<tr><td><input type="radio" value="#2_9"/></td><td>Нет связи с одним или всеми сопрягаемыми приборами основного (резервного) канала Ethernet)</td></tr>
+<tr><td><input type="radio" value="#2_10"/></td><td>Нет связи с одним или всеми сопрягаемыми приборами по каналу обмена типа ГОСТ 26765.52-87</td></tr>
+<tr><td><input type="radio" value="#2_11"/></td><td>Не вращаются вентиляторы блока БВ101</td></tr>
+</table>
+</div>
+
+<div id="grp3" style="display:none;">
+<h2>Вид неисправности приборов 80ЭТЗ-1, 80ЭТЗ-1-1:</h2>
+<table border="0" class="buglist" cellpadding="0" cellspacing="0">
+<tr><td width="1%"><input type="radio" value="#3_1"/></td><td>На лицевой панели модуля ESW-6U-14TP-U-27-M горит красный индикатор «FAULT»</td></tr>
+</table>
+</div>
+
+
+
+<br/>
+<div id="GoRadioLevel2"/>
+</div>
+
+</form>
+			</html>
+	</content>
+</frame>
+
+
+

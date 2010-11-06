@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video></video><scheme></scheme><model></model></tabs><type>model</type>
+	<current-system-title>Комплексная система "Фауна"</current-system-title>
+	<content>
+		<svg>../../../../img/models/stroking_strokewidth.svg</svg>
+	</content>
+</frame>
+

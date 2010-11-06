@@ -1,0 +1,1137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="xsl/leftside.xsl"?>
+<menu>
+	<item>
+		<name>sostav</name>
+		<title>Назначение, состав, размещение</title>
+		<childs>
+			<item>
+				<name>fauna</name>
+				<title>Комплексная система "Фауна"</title>
+				<childs>
+					<item>
+						<name>raduga</name>
+						<title>Система "Радуга"</title>
+						<childs>
+							<item>
+								<name>unit1</name>
+								<title>80РА1</title>
+							</item>
+							<item>
+								<name>unit2</name>
+								<title>80РА5-1, 80РА5-2</title>
+							</item>
+							<item>
+								<name>unit3</name>
+								<title>УЗНХ</title>
+							</item>
+							<item>
+								<name>unit4</name>
+								<title>ПРУ7-1(ПРУ7-1.15, ПРУ7-1.16, ПРУ7-1.17, ПРУ7-1.18, ПРУ7-1.22)</title>
+							</item>
+							<item>
+								<name>unit5</name>
+								<title>КС2-1, КС2-1-1</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>baksan</name>
+						<title>Система "Баксан"</title>
+						<childs>
+							<item>
+								<name>80bk1</name>
+								<title>80БК1</title>
+							</item>
+							<item>
+								<name>80bk3</name>
+								<title>80БК3-1, 80БК3-2, 80БК3-3, 80БК3-4</title>
+							</item>
+							<item>
+								<name>80bk7</name>
+								<title>80БК7, 80БК7Р-1, 80БК7Р-2, 80БК7Р-3</title>
+							</item>
+							<item>
+								<name>ks2</name>
+								<title>КС2-1, КС2-1-1</title>
+							</item>
+							<item>
+								<name>zip0</name>
+								<title>ЗИП-О</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>zaisan</name>
+						<title>Система "Зайсан"</title>
+						<childs>
+							<item>
+								<name>80zs1</name>
+								<title>80ЗС1</title>
+							</item>
+							<item>
+								<name>80zs2-1</name>
+								<title>80ЗС2-1</title>
+							</item>
+							<item>
+								<name>80zs2-2-7</name>
+								<title>80ЗС2-2, 80ЗС2-3, 80ЗС2-4, 80ЗС2-5, 80ЗС2-7</title>
+							</item>
+			                <item>
+              				    <name>80zs2-10</name>
+				                <title>80ЗС2-10</title>
+				            </item>
+				            <item>
+                				<name>80zs2-11</name>
+				                <title>80ЗС2-11</title>
+			                </item>
+              				<item>
+				                <name>80zs2-12</name>
+                				<title>80ЗС2-12</title>
+			                </item>
+              				<item>
+								<name>80zs5-1-4-6</name>
+								<title>80ЗС5-1, 80ЗС5-4, 80ЗС5-6</title>
+							</item>
+              				<item>
+								<name>80zs5-2-3-5</name>
+								<title>80ЗС5-2, 80ЗС5-3, 80ЗС5-5</title>
+							</item>
+              				<item>
+								<name>80zs6-1</name>
+								<title>80ЗС6-1</title>
+							</item>
+						
+							<item>
+								<name>80zs7</name>
+								<title>80ЗС7</title>
+							</item>
+							<item>
+								<name>80zs9</name>
+								<title>80ЗС9</title>
+							</item>
+							<item>
+								<name>ks</name>
+								<title>КС2-1-2, КС2-1-3</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>zshemchug</name>
+						<title>Система "Жемчуг"</title>
+						<childs>
+							<item>
+								<name>pribor80</name>
+								<title>Прибор 80 ЖМ1</title>
+							</item>
+							<item>
+								<name>pribor_ru</name>
+								<title>Прибор РУ-1</title>
+							</item>
+							<item>
+								<name>ks</name>
+								<title>КС2-1-2, КС2-1-3</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>etna</name>
+						<title>Система "Этна"</title>
+						<childs>
+							<item>
+								<name>80et1-1</name>
+								<title>80ЭТ1-1</title>
+							</item>
+							<item>
+								<name>80et1-2</name>
+								<title>80ЭТ1-2</title>
+							</item>
+							<item>
+								<name>80et3-1</name>
+								<title>80ЭТ3-1, 80ЭТ3-1-1</title>
+							</item>
+							<item>
+								<name>zip-o</name>
+								<title>ЗИП-О</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>cotan</name>
+						<title>Система "Котангенс"</title>
+						<childs>
+							<item>
+								<name>80kt11</name>
+								<title>80КТ11-1, 80КТ11-2, 80КТ11-3, 80КТ11-4</title>
+							</item>
+							<item>
+								<name>80kt12</name>
+								<title>80КТ12-1, 80КТ12-2</title>
+							</item>
+							<item>
+								<name>80ktf3-1-4</name>
+								<title>80КТ-Ф3-1, 80КТ-Ф3-2,80КТ-Ф3-3,80КТ-Ф3-4</title>
+							</item>
+							<item>
+								<name>80ktf3-5-6</name>
+								<title>80КТ-Ф3-5,80КТ-Ф3-6</title>
+							</item>
+							<item>
+								<name>tsvm-25-74-om5</name>
+								<title>ТСВМ-2,5-74.ОМ5</title>
+							</item>
+							
+							<item>
+								<name>vaks1</name>
+								<title>ВАКС-1-30 (1), ВАКС-1-30 (2)</title>
+							</item>
+							<item>
+								<name>modules</name>
+								<title>Ф-ВАКС-1-30-2И (1), Ф-ВАКС-1-30-2И (2)</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>ksuts</name>
+						<title>КСУТС</title>
+						<childs>
+							<item>
+								<name>80kt11</name>
+								<title>80КТ11-1, 80КТ11-2, 80КТ11-3, 80КТ11-4</title>
+							</item>
+							<item>
+								<name>80kt12</name>
+								<title>80КТ12-1, 80КТ12-2</title>
+							</item>
+						</childs>
+					</item>
+
+				</childs>
+			</item>
+		</childs>
+	</item>
+	<item>
+		<name>opis</name>
+		<title>Техническое описание</title>
+		<childs>
+			<item>
+				<name>raduga</name>
+				<title>Система "Радуга"</title>
+				<childs>
+					<item>
+						<name>unit1</name>
+						<title>80РА1</title>
+					</item>
+					<item>
+						<name>unit2</name>
+						<title>80РА5-1, 80РА5-2</title>
+					</item>
+					<item>
+						<name>unit3</name>
+						<title>УЗНХ</title>
+					</item>
+					<item>
+						<name>unit4</name>
+						<title>ПРУ7-1(ПРУ7-1.15, ПРУ7-1.16, ПРУ7-1.17, ПРУ7-1.18, ПРУ7-1.22)</title>
+					</item>
+					<item>
+						<name>unit5</name>
+						<title>КС2-1, КС2-1-1</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>baksan</name>
+				<title>Система "Баксан"</title>
+				<childs>
+					<item>
+						<name>80bk1</name>
+						<title>80БК1</title>
+					</item>
+					<item>
+						<name>80bk3</name>
+						<title>80БК3-1, 80БК3-2, 80БК3-3, 80БК3-4</title>
+					</item>
+					<item>
+						<name>80bk7</name>
+						<title>80БК7</title>
+					</item>
+					<item>
+						<name>80bk7-123</name>
+						<title>80БК7Р-1, 80БК7Р-2, 80БК7Р-3</title>
+					</item>
+					<item>
+						<name>ks2</name>
+						<title>КС2-1, КС2-1-1</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>zaisan</name>
+				<title>Система "Зайсан"</title>
+				<childs>
+					<item>
+						<name>80zs1</name>
+						<title>80ЗС1</title>
+					</item>
+					<item>
+						<name>80zs2-1</name>
+						<title>80ЗС2-1</title>
+					</item>
+					<item>
+						<name>80zs2-2-7</name>
+						<title>80ЗС2-2, 80ЗС2-3, 80ЗС2-4, 80ЗС2-5, 80ЗС2-7</title>
+					</item>
+		            <item>
+          				<name>80zs2-10</name>
+			            <title>80ЗС2-10</title>
+		            </item>
+          			<item>
+			            <name>80zs2-11</name>
+			            <title>80ЗС2-11</title>
+		            </item>
+          			<item>
+			            <name>80zs2-12</name>
+			            <title>80ЗС2-12</title>
+		            </item>
+          			<item>
+						<name>80zs5</name>
+						<title>80ЗС5-1, 80ЗС5-2, 80ЗС5-3, 80ЗС5-4, 80ЗС5-5, 80ЗС5-6</title>
+					</item>
+          			<item>
+						<name>80zs6-1</name>
+						<title>80ЗС6-1</title>
+					</item>
+					<item>
+						<name>80zs7</name>
+						<title>80ЗС7</title>
+					</item>
+					<item>
+						<name>80zs9</name>
+						<title>80ЗС9</title>
+					</item>
+					<item>
+						<name>ks</name>
+						<title>КС2-1-2, КС2-1-3</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>zshemchug</name>
+				<title>Система "Жемчуг"</title>
+				<childs>
+					<item>
+						<name>pribor80</name>
+						<title>Прибор 80 ЖМ1</title>
+					</item>
+					<item>
+						<name>pribor_ru</name>
+						<title>Прибор РУ-1</title>
+					</item>
+					<item>
+						<name>ks</name>
+						<title>КС2-1-2, КС2-1-3</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>etna</name>
+				<title>Система "Этна"</title>
+				<childs>
+					<item>
+						<name>80et1</name>
+						<title>80ЭТ1-1, 80ЭТ1-2</title>
+					</item>
+					<item>
+						<name>80et3</name>
+						<title>80ЭТ3-1, 80ЭТ3-1-1</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>cotan</name>
+				<title>Система "Котангенс"</title>
+				<childs>
+					<item>
+						<name>80kt11</name>
+						<title>80КТ11-1, 80КТ11-2, 80КТ11-3, 80КТ11-4</title>
+					</item>
+					<item>
+						<name>80kt12</name>
+						<title>80КТ12-1, 80КТ12-2</title>
+					</item>
+					<item>
+						<name>80ktf3</name>
+						<title>80КТ-Ф3-1, 80КТ-Ф3-2, 80КТ-Ф3-3, 80КТ-Ф3-4, 80КТ-Ф3-5, 80КТ-Ф3-6</title>
+					</item>
+				</childs>
+			</item>
+		</childs>
+	</item>
+	<item>
+		<name>manual</name>
+		<title>Руководство по эксплуатации</title>
+		<childs>
+			<item>
+				<name>raduga</name>
+				<title>Система "Радуга"</title>
+				<childs>
+					<item>
+						<name>uses</name>
+						<title>Использование по назначению</title>
+						<childs>
+							<item>
+								<name>podg</name>
+								<title>Подготовка системы к использованию</title>
+							</item>
+							<item>
+								<name>use</name>
+								<title>Использование системы</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>works</name>
+						<title>Работа системы</title>
+						<childs>
+							<item>
+								<name>structura</name>
+								<title>Структура системы</title>
+							</item>
+							<item>
+								<name>pitanie</name>
+								<title>Питание системы</title>
+							</item>
+							<item>
+								<name>inform</name>
+								<title>Принципы представления информации</title>
+							</item>
+							<item>
+								<name>operative</name>
+								<title>Оперативное управление</title>
+							</item>
+						</childs>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>baksan</name>
+				<title>Система "Баксан"</title>
+				<childs>
+					<item>
+						<name>uses</name>
+						<title>Использование по назначению</title>
+						<childs>
+							<item>
+								<name>limits</name>
+								<title>Эксплуатационные ограничения</title>
+							</item>
+							<item>
+								<name>security</name>
+								<title>Меры безопасности при эксплуатации</title>
+							</item>
+							<item>
+								<name>podg</name>
+								<title>Подготовка системы к использованию</title>
+							</item>
+							<item>
+								<name>use</name>
+								<title>Использование системы</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>works</name>
+						<title>Работа системы</title>
+						<childs>
+							<item>
+								<name>supply</name>
+								<title>Питание системы</title>
+							</item>
+							<item>
+								<name>control</name>
+								<title>Контроль основных параметров электроэнергии</title>
+							</item>
+							<item>
+								<name>mainstream</name>
+								<title>Управление выключателями главного тока</title>
+							</item>
+							<item>
+								<name>autosync</name>
+								<title>Автоматическая синхронизация генераторов</title>
+							</item>
+							<item>
+								<name>backlight</name>
+								<title>Подсветка мнемосхемы</title>
+							</item>
+							<item>
+								<name>autodist</name>
+								<title>Автоматическое распределение активных нагрузок</title>
+							</item>
+							<item>
+								<name>autocut</name>
+								<title>Автоматическое отключение второстепенных потребителей</title>
+							</item>
+							<item>
+								<name>autoreserve</name>
+								<title>Автоматический запуск резервного генератора</title>
+							</item>
+							<item>
+								<name>dieselconnect</name>
+								<title>Связи с системой управления дизель-генераторами</title>
+							</item>
+							<item>
+								<name>cancelfield</name>
+								<title>Гашение поля генераторов</title>
+							</item>
+							<item>
+								<name>enterstat</name>
+								<title>Ввод статизма генераторов</title>
+							</item>
+							<item>
+								<name>feedermanage</name>
+								<title>Управление фидерными выключателями</title>
+							</item>
+							<item>
+								<name>netcontrol</name>
+								<title>Управление и контроль параметров сети постоянного тока</title>
+							</item>
+							<item>
+								<name>fusecontrol</name>
+								<title>Контроль предохранителей и модулей</title>
+							</item>
+							<item>
+								<name>fuelcontrol</name>
+								<title>Управление и сигнализация топливной системы</title>
+							</item>
+							<item>
+								<name>alert</name>
+								<title>Аварийно-предупредительная сигнализация</title>
+							</item>
+							<item>
+								<name>pdu</name>
+								<title>Управление ЭСК с пульта в ПДУ</title>
+							</item>
+							<item>
+								<name>slt</name>
+								<title>Контроль ЭСК с панелей СЛТ</title>
+							</item>
+							<item>
+								<name>shutdown</name>
+								<title>Отключение системы</title>
+							</item>
+						</childs>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>zaisan</name>
+				<title>Система "Зайсан"</title>
+				<childs>
+					<item>
+						<name>1</name>
+						<title>Подготовка системы к использованию</title>
+						<childs>
+							<item>
+								<name>1-1</name>
+								<title>Эксплуатационные ограничения</title>
+							</item>
+							<item>
+								<name>1-2</name>
+								<title>Проверка системы</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>2</name>
+						<title>Использование системы в режимах проверки</title>
+					</item>
+					<item>
+						<name>3</name>
+						<title>Использование системы при управлении техническими средствами</title>
+					</item>
+					<item>
+						<name>4</name>
+						<title>Устройство системы</title>
+						<childs>
+							<item>
+								<name>4-1</name>
+								<title>Структура системы</title>
+							</item>
+							<item>
+								<name>4-2</name>
+								<title>Программное обеспечение (ПО) системы</title>
+							</item>
+							<item>
+								<name>4-3</name>
+								<title>Пользовательский интерфейс системы</title>
+							</item>
+							<item>
+								<name>4-4</name>
+								<title>Режимы контроля системы</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>5</name>
+						<title>Работа по назначению</title>
+						<childs>
+							<item>
+								<name>5-1</name>
+								<title>Работа с прибора 80ЗС1</title>
+							</item>
+							<item>
+								<name>5-2</name>
+								<title>Работа с панельной станции (СП) прибора 80ЗС1</title>
+							</item>
+							<item>
+								<name>5-3</name>
+								<title>Работа с приборов 80ЗС2-1:80ЗС2-5 и 80ЗС2-7</title>
+							</item>
+						</childs>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>zshemchug</name>
+				<title>Система "Жемчуг"</title>
+				<childs>
+					<item>
+						<name>ustr</name>
+						<title>Устройство и работа</title>
+					</item>
+					<item>
+						<name>use</name>
+						<title>Использование по назначению</title>
+						<childs>
+							<item>
+								<name>21</name>
+								<title>Эксплуатационные ограничения</title>
+							</item>
+							<item>
+								<name>22</name>
+								<title>Подготовка изделия к использованию</title>
+							</item>
+							<item>
+								<name>23</name>
+								<title>Включение и выключение системы</title>
+							</item>
+							<item>
+								<name>24</name>
+								<title>Режим следящего управления</title>
+							</item>
+							<item>
+								<name>25</name>
+								<title>Режим дистанционного простого управления</title>
+							</item>
+							<item>
+								<name>26</name>
+								<title>Режим автоматического управления</title>
+							</item>
+						</childs>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>etna</name>
+				<title>Система "Этна"</title>
+				<childs>
+					<item>
+						<name>1</name>
+						<title>Использование по назначению</title>
+						<childs>
+							<item>
+								<name>11</name>
+								<title>Эксплуатационные ограничения</title>
+							</item>
+							<item>
+								<name>12</name>
+								<title>Меры безопасности при эксплуатации системы</title>
+							</item>
+							<item>
+								<name>13</name>
+								<title>Подготовка системы к использованию</title>
+							</item>
+							<item>
+								<name>14</name>
+								<title>Использование системы</title>
+							</item>
+						</childs>
+					</item>
+					<item>
+						<name>2</name>
+						<title>Работа системы</title>
+						<childs>
+							<item>
+								<name>21</name>
+								<title>Питание системы</title>
+							</item>
+							<item>
+								<name>22</name>
+								<title>Включение питания и контроль функционирования</title>
+							</item>
+							<item>
+								<name>23</name>
+								<title>Организация рабочего места и алгоритм работы оператора</title>
+							</item>
+							<item>
+								<name>24</name>
+								<title>Алгоритм представления информационной поддержки</title>
+							</item>
+            </childs>
+          </item>
+          <item>
+						<name>3</name>
+						<title>Отключение системы</title>
+					</item>
+					<item>
+					  <name>4</name>
+						<title>Руководство оператора</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>cotan</name>
+				<title>Система "Котангенс"</title>
+				<childs>
+					<item>
+						<name>limits</name>
+						<title>Эксплуатационные ограничения</title>
+					</item>
+					<item>
+						<name>security</name>
+						<title>Меры безопасности</title>
+					</item>
+					<item>
+						<name>prepare</name>
+						<title>Подготовка системы к использованию</title>
+					</item>
+					<item>
+						<name>uses</name>
+						<title>Использование системы</title>
+					</item>
+					<item>
+						<name>shutdown</name>
+						<title>Отключение системы</title>
+					</item>
+				</childs>
+			</item>
+		</childs>
+	</item>
+	<item>
+		<name>obsluga</name>
+		<title>Техническое обслуживание</title>
+		<childs>
+			<item>
+				<name>raduga</name>
+				<title>Система "Радуга"</title>
+			</item>
+			<item>
+				<name>baksan</name>
+				<title>Система "Баксан"</title>
+				<childs>
+					<item>
+						<name>types</name>
+						<title>Виды и периодичность технического обслуживания</title>
+					</item>
+					<item>
+						<name>instruments</name>
+						<title>Инструмент и принадлежности</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>zaisan</name>
+				<title>Система "Зайсан"</title>
+			</item>
+			<item>
+				<name>zshemchug</name>
+				<title>Система "Жемчуг"</title>
+			</item>
+			<item>
+				<name>etna</name>
+				<title>Система "Этна"</title>
+				<childs>
+					<item>
+						<name>11</name>
+						<title>Виды и периодичность технического обслуживания</title>
+					</item>
+					<item>
+						<name>12</name>
+						<title>Меры безопасности при техническом обслуживании</title>
+					</item>
+					<item>
+						<name>13</name>
+						<title>Порядок технического обслуживания</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>cotan</name>
+				<title>Система "Котангенс"</title>
+			</item>
+		</childs>
+	</item>
+	<item>
+		<name>bugs</name>
+		<title>Описание неисправностей</title>
+		<childs>
+			<item>
+				<name>raduga</name>
+				<title>Система "Радуга"</title>
+				<childs>
+					<item>
+					<name>buglist</name>
+					<title>Перечень возможных неисправностей</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>baksan</name>
+				<title>Система "Баксан"</title>
+				<childs>
+					<item>
+						<name>review</name>
+						<title>Сведения о возможных отказах, неисправностях и методах их устранения</title>
+					</item>
+					<item>
+						<name>repair</name>
+						<title>Текущий ремонт</title>
+					</item>
+					<item>
+						<name>buglist</name>
+						<title>Перечень возможных неисправностей</title>
+					</item>					
+				</childs>
+			</item>
+			<item>
+				<name>zaisan</name>
+				<title>Система "Зайсан"</title>
+				<childs>
+					<item>
+						<name>1</name>
+						<title>Текущий ремонт системы</title>
+					</item>
+					<item>
+						<name>2</name>
+						<title>Демонтаж и монтаж элементов ЗИП</title>
+					</item>
+					<item>
+						<name>buglist</name>
+						<title>Перечень возможных неисправностей</title>
+					</item>					
+				</childs>
+			</item>
+			<item>
+				<name>zshemchug</name>
+				<title>Система "Жемчуг"</title>
+				<childs>
+					<item>
+						<name>buglist</name>
+						<title>Перечень возможных неисправностей</title>
+					</item>
+				</childs>				
+			</item>
+			<item>
+				<name>etna</name>
+				<title>Система "Этна"</title>
+				<childs>
+					<item>
+						<name>1</name>
+						<title>Сведения о возможных отказах, неисправностях и методах их устранения</title>
+					</item>
+					<item>
+						<name>2</name>
+						<title>Текущий ремонт</title>
+					</item>
+					<item>
+						<name>buglist</name>
+						<title>Перечень возможных неисправностей</title>
+					</item>					
+				</childs>
+			</item>
+			<item>
+				<name>cotan</name>
+				<title>Система "Котангенс"</title>
+				<childs>
+					<item>
+						<name>review</name>
+						<title>Общие сведения</title>
+					</item>
+					<item>
+						<name>80kt11</name>
+						<title>80КТ11-1, 80КТ11-2, 80КТ11-3, 80КТ11-4</title>
+					</item>
+					<item>
+						<name>80kt12</name>
+						<title>80КТ12-1, 80КТ12-2</title>
+					</item>
+					<item>
+						<name>80ktf3</name>
+						<title>80КТ-Ф3-1, 80КТ-Ф3-2, 80КТ-Ф3-3, 80КТ-Ф3-4, 80КТ-Ф3-5, 80КТ-Ф3-6</title>
+					</item>
+					<item>
+						<name>buglist</name>
+						<title>Перечень возможных неисправностей</title>
+					</item>					
+				</childs>
+			</item>
+		</childs>
+	</item>
+	<item>
+		<name>docs</name>
+		<title>Эксплуатационная  документация</title>
+		<childs>
+			<item>
+				<name>raduga</name>
+				<title>Система "Радуга"</title>
+	  <childs>
+		  <item>
+			<name>vedomost_ed</name>
+			<title>Ведомость эксплуатационных документов</title>
+	  	  </item>
+		  <item>
+			<name>rukovodstvo</name>
+			<title>Руководство по эксплуатации</title>
+	  	  </item>
+          <item>
+            <name>rukovodstvo_a</name>
+            <title>Руководство по эксплуатации. Приложение А</title>
+          </item>
+          <item>
+            <name>rukovodstvo_b</name>
+            <title>Руководство по эксплуатации. Приложение Б</title>
+          </item>
+          <item>
+            <name>rukovodstvo_v</name>
+            <title>Руководство по эксплуатации. Приложение В</title>
+          </item>
+          <item>
+            <name>scheme_el</name>
+            <title>Схема электрическая функционально-принципиальная</title>
+          </item>
+          <item>
+            <name>formular</name>
+            <title>Формуляр</title>
+          </item>
+          <item>
+            <name>vedomost_raduga</name>
+            <title>Ведомость ЗИП-О "Радуга"</title>
+          </item>
+          <item>
+            <name>vedomost_fauna</name>
+            <title>Ведомость ЗИП-О "Фауна"</title>
+          </item>
+          <item>
+            <name>metodika</name>
+            <title>Методика поверки измерительных каналов</title>
+          </item>
+	</childs>
+			</item>
+			<item>
+				<name>baksan</name>
+				<title>Система "Баксан"</title>
+				<childs>
+					<item>
+						<name>vedomost_ed</name>
+						<title>Ведомость эксплуатационных документов</title>
+					</item>
+					<item>
+						<name>rukovodstvo</name>
+						<title>Руководство по эксплуатации</title>
+					</item>
+					<item>
+						<name>rukovodstvo_pril</name>
+						<title>Руководство по эксплуатации. Приложение</title>
+					</item>					
+					<item>
+						<name>scheme_el</name>
+						<title>Схема электрическая функционально-принципиальная</title>
+					</item>
+					<item>
+						<name>formular</name>
+						<title>Формуляр</title>
+					</item>
+					<item>
+						<name>vedomost_baksan</name>
+						<title>Ведомость ЗИП-О "Баксан"</title>
+					</item>					
+					<item>
+						<name>vedomost_fauna</name>
+						<title>Ведомость ЗИП-О "Фауна"</title>
+					</item>						
+					<item>
+						<name>metodika</name>
+						<title>Методика поверки измерительных каналов</title>
+					</item>	
+				</childs>
+			</item>
+			<item>
+        <name>zaisan</name>
+        <title>Система "Зайсан"</title>
+				<childs>
+					<item>
+						<name>vedom</name>
+						<title>Ведомость эксплуатационных документов</title>
+					</item>
+					<item>
+						<name>rukovodstvo1</name>
+						<title>Руководство по эксплуатации. Часть 1</title>
+					</item>
+					<item>
+						<name>rukovodstvo2</name>
+						<title>Руководство по эксплуатации. Часть 2</title>
+					</item>
+					<item>
+						<name>rukovodstvo3</name>
+						<title>Руководство по эксплуатации. Часть 3</title>
+					</item>
+					<item>
+						<name>rukovodstvo4</name>
+						<title>Руководство по эксплуатации. Часть 4</title>
+					</item>
+					<item>
+						<name>rukovodstvo5</name>
+						<title>Руководство по эксплуатации. Часть 5</title>
+					</item>
+					<item>
+						<name>rukovodstvo6</name>
+						<title>Руководство по эксплуатации. Часть 6</title>
+					</item>
+					<item>
+						<name>scheme_el1</name>
+						<title>Схема электрическая функционально-принципиальная. Часть 1</title>
+					</item>
+          			<item>
+			            <name>scheme_el2</name>
+            			<title>Схема электрическая функционально-принципиальная. Часть 2</title>
+			        </item>
+					<item>
+						<name>formular</name>
+						<title>Формуляр</title>
+					</item>
+					<item>
+						<name>vedom_zaisan</name>
+						<title>Ведомость ЗИП-О "Зайсан"</title>
+					</item>
+					<item>
+						<name>vedom_fauna</name>
+						<title>Ведомость ЗИП-О "Фауна"</title>
+					</item>
+          			<item>
+						<name>metodika</name>
+						<title>Методика поверки измерительных каналов</title>
+					</item>
+				</childs>
+			</item>
+			
+      <item>
+				<name>zshemchug</name>
+				<title>Система "Жемчуг"</title>
+	<childs>
+	  <item>
+	   <name>vedomost</name>
+	   <title>Ведомость эксплуатационных документов</title>
+	  </item>
+	  <item>
+	   <name>rukovodstvo</name>
+	   <title>Руководство по эксплуатации</title>
+	  </item>
+          <item>
+            <name>scheme_el</name>
+            <title>Схема электрическая функционально-принципиальная</title>
+          </item>
+          <item>
+            <name>formular</name>
+            <title>Формуляр</title>
+          </item>
+          <item>
+            <name>vedomost_zhemchug</name>
+            <title>Ведомость ЗИП-О "Жемчуг"</title>
+          </item>
+          <item>
+            <name>vedomost_fauna</name>
+            <title>Ведомость ЗИП-О "Фауна"</title>
+          </item>
+          <item>
+            <name>metodika</name>
+            <title>Методика поверки измерительных каналов</title>
+          </item>
+        </childs>
+                        </item>
+			
+                        <item>
+				<name>etna</name>
+				<title>Система "Этна"</title>
+				<childs>
+					<item>
+						<name>vedom</name>
+						<title>Ведомость эксплуатационных документов</title>
+					</item>
+					<item>
+						<name>rukovodstvo</name>
+						<title>Руководство по эксплуатации</title>
+					</item>
+					<item>
+						<name>scheme</name>
+						<title>Схема электрическая функционально-принципиальная</title>
+					</item>
+					<item>
+						<name>formular</name>
+						<title>Формуляр</title>
+					</item>
+					<item>
+						<name>vedom_etna</name>
+						<title>Ведомость ЗИП-О "Этна"</title>
+					</item>
+					<item>
+						<name>vedom_fauna</name>
+						<title>Ведомость ЗИП-О "Фауна"</title>
+					</item>
+				</childs>
+			</item>
+			<item>
+				<name>cotan</name>
+				<title>Система "Котангенс"</title>
+				<childs>
+					<item>
+						<name>vedomost</name>
+						<title>Ведомость эксплуатационных документов</title>
+					</item>
+					<item>
+						<name>rukovodstvo</name>
+						<title>Руководство по эксплуатации</title>
+					</item>
+					<item>
+						<name>scheme_el</name>
+						<title>Схема электрическая функционально-принципиальная</title>
+					</item>
+					<item>
+						<name>formular</name>
+						<title>Формуляр</title>
+					</item>
+					<item>
+						<name>vedom_cotan</name>
+						<title>Ведомость ЗИП-О "Котангенс"</title>
+					</item>
+					<item>
+						<name>vedom_fauna</name>
+						<title>Ведомость ЗИП-О "Фауна"</title>
+					</item>
+					<item>
+						<name>acc_jurnal</name>
+						<title>Аккумуляторный журнал</title>
+					</item>
+					<item>
+						<name>agregat</name>
+						<title>Техническое описание и инструкция по эксплуатации "Агрегат выпрямительный ВАКС1-30"</title>
+					</item>
+					<item>
+						<name>filtr</name>
+						<title>Паспорт Фильтр Ф-ВАКС1-30-2И</title>
+					</item>
+				</childs>
+			</item>
+		</childs>
+	</item>
+</menu>

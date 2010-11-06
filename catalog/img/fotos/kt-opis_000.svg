@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="960" height="1280"
+	 viewBox="0 0 960 1280" overflow="visible" enable-background="new 0 0 960 1280" xml:space="preserve" onload="onload(evt); updatecontrol(evt)" onzoom="updatecontrol(evt)" onscroll="updatecontrol(evt)" onresize="updatecontrol(evt)">
+<script type="text/ecmascript"><![CDATA[
+
+
+function onload(evt) {
+    var target = evt.getTarget();
+    doc = target.getOwnerDocument();
+ }
+var pointzoom;
+var inout;
+function ZoomControlIn() {
+    pointzoom=svgDocument.documentElement.currentScale*2;
+    inout='in';
+    ZoomControl();
+}
+function ZoomControlOut() {
+    pointzoom=svgDocument.documentElement.currentScale/2;
+    inout='out';    
+    ZoomControl();
+}
+function ZoomControl() {
+    var SVGRoot = svgDocument.documentElement;
+	var w=getInnerWidth();
+	var h=getInnerHeight();
+	var x=-SVGRoot.currentTranslate.x + w/2
+	var y=-SVGRoot.currentTranslate.y + h/2
+	
+	if (pointzoom>=0.0625 && pointzoom<=16) {	
+  	  SVGRoot.currentScale = pointzoom;
+	  if (SVGRoot.currentScale!=pointzoom) {setTimeout("ZoomControl()",50); return;}
+	  if (inout=='out') {
+	    SVGRoot.currentTranslate.x += x/2;
+	    SVGRoot.currentTranslate.y += y/2;
+	  }
+	  else {
+	    SVGRoot.currentTranslate.x -= x;
+	    SVGRoot.currentTranslate.y -= y;
+	  }	
+	}
+}
+function ZoomPanReset() {
+    var SVGRoot = svgDocument.documentElement;
+	SVGRoot.currentScale = 1;
+	if (SVGRoot.currentScale!=1) {setTimeout("ZoomPanReset()",50); return;}
+	SVGRoot.currentTranslate.x = 0;
+	SVGRoot.currentTranslate.y = 0;
+}
+function updatecontrol (evt) {
+    var control = doc.getElementById("control");
+    var x = 1;
+    var y = 1;
+    var SVGRoot = svgDocument.documentElement;
+    var scale = SVGRoot.currentScale;
+    var trans = SVGRoot.currentTranslate;
+    var vbox = SVGRoot.getAttributeNS(null, "viewBox");
+    var params  = vbox.split(/\s+/);
+    var x1 = (-trans.x+x)/scale;
+    var y1 = (-trans.y+y)/scale;  
+    var h_scale = window.innerWidth / params[2];
+    var v_scale = window.innerHeight / params[3];  
+    if (h_scale>v_scale) box_scale=v_scale; 
+    else box_scale=h_scale;
+    var x_transl=(window.innerWidth-(box_scale*params[2]))/2;
+    var y_transl=(window.innerHeight-(box_scale*params[3]))/2;  
+    var vX = 1*params[0]; 
+    var vY = 1*params[1]; 
+    x1=(x1-x_transl)/box_scale+vX;
+    y1=(y1-y_transl)/box_scale+vY;
+    var toolscale =1/scale;
+    toolscale=toolscale/box_scale;
+    control.setAttribute ("transform", "translate("+x1+", "+y1+") scale("+toolscale+")");	
+}    
+
+function display(evt, id, disp) {
+    var element = doc.getElementById(id);
+    element.setAttribute ("display", disp);     
+}
+
+
+  function updatetips(evt, helptext1, helptext2, bgsizex, bgsizey) {
+    var ToolTip = doc.getElementById("Tooltip");
+	var elemtext1 = doc.getElementById("Tooltext1");
+	var elemtext2 = doc.getElementById("Tooltext2");
+    var elembg = doc.getElementById("Toolbg");
+    
+	elemtext1=elemtext1.firstChild;
+    elemtext1.data = helptext1;
+	elemtext2=elemtext2.firstChild;
+    elemtext2.data = helptext2;
+	elembg.setAttribute ("width", bgsizex);
+	elembg.setAttribute ("height", bgsizey);		
+
+    var x = evt.screenX;
+    var y = evt.screenY;
+  
+    var SVGRoot = svgDocument.documentElement;
+    var scale = SVGRoot.currentScale;
+    var trans = SVGRoot.currentTranslate;
+    var vbox = SVGRoot.getAttributeNS(null, "viewBox");
+    var params  = vbox.split(/\s+/);
+
+    var x1 = (( 10.0 - trans.x )+x)/scale;
+    var y1 = (( -15.0 - trans.y )+y)/scale;  
+  
+    var h_scale = window.innerWidth / params[2];
+    var v_scale = window.innerHeight / params[3];  
+ 
+    if (h_scale>v_scale) box_scale=v_scale; 
+    else box_scale=h_scale;
+  
+  
+    var x_transl=(window.innerWidth-(box_scale*params[2]))/2;
+    var y_transl=(window.innerHeight-(box_scale*params[3]))/2;  
+    var vX = 1*params[0]; 
+    var vY = 1*params[1]; 
+    x1=(x1-x_transl)/box_scale+vX;
+    y1=(y1-y_transl)/box_scale+vY;
+
+    var toolscale =1/scale;
+    toolscale=toolscale/box_scale;
+    
+    var xtest=bgsizex*toolscale;
+    var ytest=bgsizey*toolscale;
+    if (x>(window.innerWidth-xtest) && (window.innerWidth-xtest)>0) x1=x1-xtest-((25.0/scale)/box_scale);
+    if (y<ytest) y1=y1-((-30.0/scale)/box_scale);
+            
+    ToolTip.setAttribute ("transform", "translate("+x1+", "+y1+") scale("+toolscale+")");	
+  }	
+]]>
+</script>
+
+
+<image id="foto" x="0" y="0" width="960" height="1280" xlink:href="img/kt_000.jpg"/>
+
+<g id="control">
+ <g id="ZoomIn" opacity="0.8" onclick="ZoomControlIn()"
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Увеличить', '', 53, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Увеличить','', 53, 14)"   
+ >
+   <rect x="5" y="5" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="30" height="30"/>
+  <g transform="translate(-63.5,-60), scale(0.12,0.12)">
+   <circle fill="#e0e0e0" stroke="#555555" stroke-width="12" cx="736.471" cy="636.917" r="42.101"/>
+   <line fill="none" stroke="#555555" stroke-width="23" x1="708.044" y1="667.969" x2="626.525" y2= "749.491" />
+   <path fill="none" stroke="#555555" stroke-width="12" d="M709.648 636.917l53.6448 0m-26.823 26.8218l0 -53.6448"/>
+  </g> 
+ </g>
+ <g id="ZoomPanReset" opacity="0.8" onclick="ZoomPanReset()"
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Подогнать размер', '', 88, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Подогнать размер','', 88, 14)"   
+ >   
+   <rect id="ZoomPanReset" x="40" y="5" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="30" height="30"/>   
+  <g transform="translate(-85.5,-59), scale(0.12,0.12)">
+   <circle id="_53893304" fill="#e0e0e0" stroke="#555555" stroke-width="12" cx="1192.69" cy="636.917" r="42.101"/>
+   <line id="_81661456" fill="none" stroke="#555555" stroke-width="23" x1="1164.26" y1="667.969" x2="1082.75" y2= "749.491" />
+   <polygon id="_52651024" fill="#555555" points="1192.24,557.262 1209.56,577.722 1174.92,577.722 "/>
+   <polygon id="_54073000" fill="#555555" points="1192.24,717.43 1209.56,696.97 1174.92,696.97 "/>
+   <polygon id="_53618568" fill="#555555" points="1113.51,638.705 1133.97,621.389 1133.97,656.02 "/>
+   <polygon id="_52648592" fill="#555555" points="1273.68,638.705 1253.22,621.389 1253.22,656.02 "/>
+  </g>   
+ </g>
+ <g id="ZoomOut" opacity="0.8" onclick="ZoomControlOut()"
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Уменьшить', '', 56, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Уменьшить','', 56, 14)"   
+ >   
+   <rect x="75" y="5" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="30" height="30"/>      
+  <g transform="translate(-22.5,-60), scale(0.12,0.12)">
+   <circle id="_53893232" fill="#e0e0e0" stroke="#555555" stroke-width="12" cx="972.78" cy="636.917" r="42.101"/>
+   <line id="_52965008" fill="none" stroke="#555555" stroke-width="23" x1="944.352" y1="667.969" x2="862.833" y2= "749.491" />
+   <line id="_53893472" fill="none" stroke="#555555" stroke-width="12" x1="945.957" y1="636.917" x2="999.602" y2= "636.917" />
+  </g>   
+ </g>
+ 
+<a xlink:href="../../catalog/opis/cotan/photo_017.xml"> 
+  <g id="PrevFoto" opacity="0.8" 
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Предыдущая', '', 64, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Предыдущая','', 64, 14)"   
+   >
+   <rect x="5" y="40" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="48" height="30"/>
+   <g transform="translate(-38,17), scale(0.4,0.4)">   
+  <path id="Prev" fill="#555555" d="M205.91 78.9951l0 28.8955 -41.5624 0 0 16.4483 -4.63288 0 -30.8961 -30.8961 30.8961 -30.8961 4.63288 0 0 16.4483 41.5624 0zm-70.2584 14.4478l19.2306 19.2306 0 -9.61531 41.4113 0 0 -19.2306 -41.4113 0 0 -9.61531 -19.2306 19.2306z"/>
+   </g>   
+ </g> 
+</a>
+<a xlink:href="../../catalog/opis/cotan/photo_001.xml"> 
+ <g id="NextFoto" opacity="0.8" 
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Следующая', '', 60, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Следующая','', 60, 14)"   
+ >
+   <rect x="58" y="40" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="47" height="30"/>
+   <g transform="translate(-40,17), scale(0.4,0.4)">   
+     <path id="Next" fill="#555555" d="M271.234 78.9951l0 28.8955 41.5624 0 0 16.4483 4.63288 0 30.8961 -30.8961 -30.8961 -30.8961 -4.63288 0 0 16.4483 -41.5624 0zm70.2584 14.4478l-19.2306 19.2306 0 -9.61531 -41.4113 0 0 -19.2306 41.4113 0 0 -9.61531 19.2306 19.2306z"/>
+   </g>
+ </g> 
+</a> 
+</g> 
+
+
+<g id="Tooltip" display="none">
+  <rect id="Toolbg" x="0.25" y="0.25" opacity="0.9" fill="#ffffff" stroke="#000000" stroke-width="0.5" stroke-miterlimit="1" width="50" height="14"/>
+  <text transform="matrix(0.8647 0 0 1 3.249 10.6948)" font-family="'ArialMT'" font-size="11"><tspan id="Tooltext1"> </tspan></text>
+  <text transform="matrix(0.8647 0 0 1 3.249 22.6948)" font-family="'ArialMT'" font-size="11"><tspan id="Tooltext2"> </tspan></text>   
+</g>  
+</svg>

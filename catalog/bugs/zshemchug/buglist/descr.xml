@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/RightBottomSide.xslt"?>
+<frame>
+	<type>descr</type>
+	<content>
+		<html>
+<form>
+
+<h2>Вид неисправности прибора: </h2>
+<input type="radio" value="#1"/>Отказ каналов управления рулем направления<br/>
+<input type="radio" value="#2"/>Засветка ламп контроля предохранителя<br/>
+<BR/>
+
+<div id="GoRadio"/>
+</form>
+			</html>
+	</content>
+</frame>
+
+
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video>hidden</video><scheme></scheme><model></model></tabs><type>scheme</type>
+	<content>
+		<svg>../../../../../img/schemes/kt_scheme_list03_80kt11.svg</svg>
+	</content>
+</frame>
+

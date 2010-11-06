@@ -1,0 +1,100 @@
+body {
+	background-color: #FFF5EE;
+
+	border-collapse: collapse;
+	scrollbar-3dlight-color:#ffffff; /* цвет верхней и левой границ полосы прокрутки, бегунка, стрелок */
+	scrollbar-arrow-color:#000000; /* цвет стрелок на кнопках */
+	scrollbar-highlight-color: #cccccc; /* цвет "освещенной" части бегунка и кнопок(цвет левых и верхних их граней) */
+	scrollbar-face-color:#cccccc; /* основной цвет бегунка и кнопок */
+	scrollbar-shadow-color:#cccccc; /* цвет "неосвещенной" части бегунка и кнопок (цвет правых и нижних их граней) */
+	scrollbar-darkshadow-color:#ffffff; /* цвет "тени" бегунка и кнопок (цвет правых и нижних гранией) */
+	scrollbar-track-color: #e7e7e7; 	
+	overflow:auto;
+}
+
+#selected
+{
+	color: #2A7409; 
+	padding: 0; 
+	margin: 0; 
+	font: normal 12px Tahoma, sans-serif;
+}
+
+div.header1_list, div.header2_list, div.header3_list{
+	display: none;
+	text-decoration:underline;
+	color: #1b68af;
+}
+div.first_div {
+	margin-top: -14px; 
+	margin-left: -8px;
+}
+div.header1
+{ 
+	background-image: url(../img/leftmenu/lmenu-offcaps.gif);
+	background-position: center;
+	background-repeat: repeat-x; 
+	line-height: 0px;
+	margin-top: -6px; 
+	font-weight: bold;
+	padding-left: 0px;
+	cursor: pointer;
+}
+
+td.header1, div.header1 {
+	color: #FFFFFF;
+	font-family: Tahoma;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+div.header2
+{
+	color: #1b68af;
+	line-height: 30px; 
+	font-family: Tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+    /*width: 500px;*/
+	margin-top: -5px;  
+	margin-left: 10px;
+	padding-left: 15px; 
+	background-image: url('../img/leftmenu/lmenu-close.gif'); 
+	background-repeat: no-repeat;
+	background-position: center left;
+	cursor: pointer;
+}
+
+div.header3
+{
+	color: #1b68af;
+	line-height: 30px; 
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-weight: bold;
+    /*width: 500px;*/
+	margin-top: -7px;  
+	margin-left: 20px;
+	padding-left: 15px; 
+	background-image: url('../img/leftmenu/lmenu-end-first.gif'); 
+	background-repeat: no-repeat;	
+	background-position: center left;
+	cursor: pointer;
+}
+
+div.header4
+{
+	color: #1b68af;
+	line-height: 30px; 
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-weight: bold;
+    /*width: 500px;*/
+	margin-top: -7px;  
+	margin-left: 30px;
+	padding-left: 15px; 
+	background-image: url('../img/leftmenu/lmenu-end-first.gif'); 
+	background-repeat: no-repeat;	
+	background-position: center left;
+	cursor: pointer;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="/xslt/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video></video><scheme></scheme><model></model></tabs><type>model</type>
+	<content>
+		<svg>/pics/models/80RA5_to.svg</svg>
+	</content>
+</frame>
+

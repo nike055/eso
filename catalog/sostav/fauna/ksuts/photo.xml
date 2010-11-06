@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="../../../../xsl/rightside.xslt"?>
+<frame>
+	<tabs><photo></photo><video>hidden</video><scheme></scheme><model>hidden</model><dmodel>hidden</dmodel></tabs><type>photo</type>
+	<content>
+		empty photo
+	</content>
+</frame>

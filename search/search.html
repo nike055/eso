@@ -1,0 +1,45 @@
+﻿<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<script language=JavaScript>
+
+//sd addon start
+parent.searchf.document.ondragstart = new Function("return false");
+
+parent.searchf.document.onclick = function(e){
+
+	if(parent.searchf.event.srcElement.parentNode.nodeName=='A'){
+
+		var searchWord = parent.searchf.document.getElementById('sword').innerHTML;
+		searchWord = searchWord.substr(0, searchWord.length-1);
+
+		setCookie('search-word', searchWord.replace(/\*/g, ''));
+	}
+}
+//sd addon end
+
+parent.searchf.document.write( s23 ); parent.searchf.document.close();  } function s03( sy ) { var sqh="";for( var st=0; st<sy.length; st++) { if( sy.charAt(st)=="<" ) { sqh += "&lt;"; } else if( sy.charAt(st)==">" ) { sqh += "&gt;"; } else if( sy.charAt(st)=="\"" ) { sqh += "&quot;"; } else { sqh += sy.charAt(st); } } return( sqh ); } function s93() { sm = sl.indexOf("*"); if( sm == 0 ) { sm = -2; sn = false; } else if (sm == sl.length -1) { sm = -3; sn = false; } else if (sm > 0 ) { sm = -4;sn = true; } else { sn = false; } if ( sl.indexOf("*") != sl.lastIndexOf("*") ) { if( sm == -2 ) { if( sl.lastIndexOf("*") == sl.length - 1 ) { sm = -5; } else { sm = -4; sn = true; } } }if( ( sm == -2 ) || (sm == -5 )) { sl = sl.substring( 1, sl.length ); } if( ( sm == -3 ) || (sm == -5 )) { sl = sl.substring( 0, sl.length - 1 ); } } function startsearch() { var sv;sl=document.formSearch.txtSearch.value;if (( sl.length > 0 )&&( sl != "*" )) { sk = "";s98 = sl; sl = s03(sl);s93();if( s17 ) { sv = sl; } else { sv = sl.toUpperCase(); }if (s45 != 0) { s41=sv.split(' '); } else { s41=sv.split(); }if ( !(sn ) ) { for( var st=1; st<s1.length; st++ ) { s4( st, sv ); } s6(); } sW();sV();sY();s11(); }}
+
+//  End of Search Maker Pro script.
+
+//-->
+function setCookie (name, value, expires, path, domain, secure) {
+      window.parent.parent.document.cookie = name + "=" + escape(value) +
+        ((expires) ? "; expires=" + expires : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+}
+
+</script>
+<title>Поиск - ИЭТР на КСУТС "Фауна"</title>
+<link rel="stylesheet" href="/css/rightside.css" type="text/css" /> <link rel="shortcut icon" href="/favicon.ico" /> <script type="text/javascript" src="/js/rightside.js"></script> 
+</head>
+<body onLoad = SMPSetFocus() > 
+<div id="searchform"><div class="caps">Найти:</div> 
+<form name=formSearch action="javascript:startsearch() //">
+<input name=txtSearch>&nbsp; <input name=send type=submit value=Искать>
+</form>
+Неизвестные символы заменяются *, например, 80БК*
+</div> </body> </html> 
+

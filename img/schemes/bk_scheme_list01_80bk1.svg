@@ -1,0 +1,2014 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="17600" height="5080"
+	 viewBox="0 0 17600 5080" overflow="visible" enable-background="new 0 0 17600 5080" xml:space="preserve" onload="onload(evt); updatecontrol(evt)" onzoom="updatecontrol(evt)" onscroll="updatecontrol(evt)" onresize="updatecontrol(evt)">
+ 
+<script type="text/ecmascript"><![CDATA[
+if (!top.sessionstorage) top.sessionstorage= [];
+function s_save($param, $value) { 
+    return top.sessionstorage[$param]= $value;
+}
+function s_load($param, $value) { 
+    return top.sessionstorage[$param]?top.sessionstorage[$param]:$value;
+}
+
+
+function onload(evt){
+  var target = evt.getTarget();
+  doc = target.getOwnerDocument();
+}
+
+var pointzoom;
+var inout;
+function ZoomControlIn() {
+    pointzoom=svgDocument.documentElement.currentScale*2;
+    inout='in';
+    ZoomControl();
+}
+function ZoomControlOut() {
+    pointzoom=svgDocument.documentElement.currentScale/2;
+    inout='out';    
+    ZoomControl();
+}
+function ZoomControl() {
+    var SVGRoot = svgDocument.documentElement;
+	var w=getInnerWidth();
+	var h=getInnerHeight();
+	var x=-SVGRoot.currentTranslate.x + w/2
+	var y=-SVGRoot.currentTranslate.y + h/2
+	
+	if (pointzoom>=0.0625 && pointzoom<=16) {	
+  	  SVGRoot.currentScale = pointzoom;
+	  if (SVGRoot.currentScale!=pointzoom) {setTimeout("ZoomControl()",50); return;}
+	  if (inout=='out') {
+	    SVGRoot.currentTranslate.x += x/2;
+	    SVGRoot.currentTranslate.y += y/2;
+	  }
+	  else {
+	    SVGRoot.currentTranslate.x -= x;
+	    SVGRoot.currentTranslate.y -= y;
+	  }	
+	}
+}
+function ZoomPanReset() {
+    var SVGRoot = svgDocument.documentElement;
+	SVGRoot.currentScale = 1;
+	if (SVGRoot.currentScale!=1) {setTimeout("ZoomPanReset()",50); return;}
+	SVGRoot.currentTranslate.x = 0;
+	SVGRoot.currentTranslate.y = 0;
+}
+function updatecontrol (evt) {
+    var control = doc.getElementById("control");
+    var x = 1;
+    var y = 1;
+    var SVGRoot = svgDocument.documentElement;
+    var scale = SVGRoot.currentScale;
+    var trans = SVGRoot.currentTranslate;
+    var vbox = SVGRoot.getAttributeNS(null, "viewBox");
+    var params  = vbox.split(/\s+/);
+    var x1 = (-trans.x+x)/scale;
+    var y1 = (-trans.y+y)/scale;  
+    var h_scale = window.innerWidth / params[2];
+    var v_scale = window.innerHeight / params[3];  
+    if (h_scale>v_scale) box_scale=v_scale; 
+    else box_scale=h_scale;
+    var x_transl=(window.innerWidth-(box_scale*params[2]))/2;
+    var y_transl=(window.innerHeight-(box_scale*params[3]))/2;  
+    var vX = 1*params[0]; 
+    var vY = 1*params[1]; 
+    x1=(x1-x_transl)/box_scale+vX;
+    y1=(y1-y_transl)/box_scale+vY;
+    var toolscale =1/scale;
+    toolscale=toolscale/box_scale;
+    control.setAttribute ("transform", "translate("+x1+", "+y1+") scale("+toolscale+")");	
+}      
+  
+function display(evt, id, disp) {
+  var element = doc.getElementById(id);
+  element.setAttribute ("display", disp);     
+}
+  
+function LinkSelect(id, str) {
+    var element = doc.getElementById(id);
+    element.setAttribute ("class", str);
+}
+ 
+function updatetips(evt, helptext1, helptext2, bgsizex, bgsizey) {
+    var ToolTip = doc.getElementById("Tooltip");
+	var elemtext1 = doc.getElementById("Tooltext1");
+	var elemtext2 = doc.getElementById("Tooltext2");
+    var elembg = doc.getElementById("Toolbg");
+    
+	elemtext1=elemtext1.firstChild;
+    elemtext1.data = helptext1;
+	elemtext2=elemtext2.firstChild;
+    elemtext2.data = helptext2;
+	elembg.setAttribute ("width", bgsizex);
+	elembg.setAttribute ("height", bgsizey);		
+
+    var x = evt.screenX;
+    var y = evt.screenY;
+  
+    var SVGRoot = svgDocument.documentElement;
+    var scale = SVGRoot.currentScale;
+    var trans = SVGRoot.currentTranslate;
+    var vbox = SVGRoot.getAttributeNS(null, "viewBox");
+    var params  = vbox.split(/\s+/);
+
+    var x1 = (( 10.0 - trans.x )+x)/scale;
+    var y1 = (( -15.0 - trans.y )+y)/scale;  
+  
+    var h_scale = window.innerWidth / params[2];
+    var v_scale = window.innerHeight / params[3];  
+ 
+    if (h_scale>v_scale) box_scale=v_scale; 
+    else box_scale=h_scale;
+  
+  
+    var x_transl=(window.innerWidth-(box_scale*params[2]))/2;
+    var y_transl=(window.innerHeight-(box_scale*params[3]))/2;  
+    x1=(x1-x_transl)/box_scale;
+    y1=(y1-y_transl)/box_scale;
+  
+    var toolscale =1/scale;
+    toolscale=toolscale/box_scale;
+    
+    var xtest=bgsizex*toolscale;
+    var ytest=bgsizey*toolscale;
+    if (x>(window.innerWidth-xtest) && (window.innerWidth-xtest)>0) x1=x1-xtest-((25.0/scale)/box_scale);
+    if (y<ytest) y1=y1-((-30.0/scale)/box_scale);
+         
+    ToolTip.setAttribute ("transform", "translate("+x1+", "+y1+") scale("+toolscale+")");	
+  }	
+]]>
+</script> 
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str4 {stroke:black;stroke-width:0.589356;stroke-linejoin:bevel}
+    .str2 {stroke:black;stroke-width:2.12475;stroke-linejoin:bevel}
+    .str3 {stroke:black;stroke-width:2.9515;stroke-linejoin:bevel}
+    .str1 {stroke:black;stroke-width:5.90419;stroke-linejoin:bevel}
+    .str5 {stroke:black;stroke-width:8.26752}
+    .str6 {stroke:black;stroke-width:2.12475;stroke-linejoin:bevel;stroke-dasharray:169.980145 42.495036 21.247518 42.495036}
+    .str0 {stroke:#00FF33;stroke-width:4.13376;stroke-dasharray:210.821678 12.401275 12.401275 12.401275}
+    .fil0 {fill:none}
+    .fil1 {fill:black}
+    .fil2 {fill:#FFEDED}
+    .fil3 {fill:#FFFFFF; opacity:0}
+	.filunsel {fill:#FFEDED}
+	.filsel  {fill:#e86d6d}	
+	.filredsel  {fill:#ff0000}	
+	.strredsel  {stroke:#ff0000;stroke-width:8.26752}	
+    .fnt2 {font-weight:normal;font-size:41.6659;font-family:'Arial'}
+    .fnt0 {font-weight:normal;font-size:57.4132;font-family:'Arial'}
+    .fnt1 {font-weight:normal;font-size:114.826;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="_0_x0020_VIEW0">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polygon class="fil0 str0" points="759.712,3416.11 15345,3416.11 15345,1068.91 759.712,1068.91 "/>
+  <g transform="matrix(0.7 0 0 1 9596.98 -419.223)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А15</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9598.6 -795.111)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А11</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9599.68 -616.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А13</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9595.66 -510.628)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А14</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9601.78 -700.806)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А12</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9603.37 -892.589)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А10</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9604.76 -990.599)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А9</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9606.62 -1083.73)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А6</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9612.27 -1459.37)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А7,</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9609.73 -1175.83)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9612.27 -1364.08)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А8</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9605.95 -1643.91)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А2-</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9611.32 -1549.57)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А5,</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9845.16 -420.037)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК3-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9848.12 -800.291)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК7Р-2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9848.07 -616.633)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК7</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9846.7 -514.953)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК3-2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9847.36 -705.33)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК7Р-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9850.37 -900.004)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК7Р-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9851.74 -985.699)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК3-4</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9852.28 -1086.39)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК3-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9852.28 -1185.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Прибор 80БК1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9859.42 -1644.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Устройство КСИ-01 ОМ</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9584.42 -1846.16)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Поз.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 10321.8 -1846.16)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Наименование</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 10257.9 -1279.99)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Система &quot;Баксан&quot;</text>
+  </g>
+  <polygon class="fil1" points="16417.2,1264.53 16875.3,1264.53 16875.3,1269.75 16417.2,1269.75 "/>
+  <g transform="matrix(0.7 0 0 1 11238.4 2304.91)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Лист</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9172.59 2411.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Изм.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9254.21 2411.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Лист</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9409.32 2411.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">№ докум.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9674.19 2411.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Подп.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9821.13 2411.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Дата</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 10106.2 2373.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt1">20380.360086.120 ТО2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 10056.8 2470.26)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Копировал</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 10883.6 2470.26)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Формат</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 11119.8 2470.26)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">A3х5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3187.21 2169.43)">
+   <text x="8799" y="2539.31"  class="fil1 fnt1">КСУ ТС &quot;Фауна&quot;. Система управления ЭСК &quot;Баксан&quot;. Схема электрическая соединений.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9836.31 -236.341)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Устройство КС2-1-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9592.86 -240.054)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">XQ1-</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9592.86 -142.628)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">XQ4</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9592.86 41.3777)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">XQ5-</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9579.77 138.805)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">XQ22</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9836.31 40.1825)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Устройство КС2-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4359.35 -414.638)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80БК1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4386.83 -349.092)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 729.319 10714.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-101 (79)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 294.922 10431.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 539.706 10393.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 990.844 10396.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 1820.05 10411.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2248.31 10409.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2480.18 10426.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 7х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4860.92 10371.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 7х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5039.03 10356.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5321.49 10352.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6130.23 10356.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6329.75 10359)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 7х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6549.15 10383.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -1498.31 10653.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5-4 (74) КНРЭк 10х1,5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3003.19 10723.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-1 (185) КНР 19х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3383.82 10710.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-2 (186) КНР 19х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -1207.16 10644.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5-33 (77) КНРЭк 10х1,5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2928.77 12061.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5-63 (169) КНРЭк 10х1,5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3253.57 12065)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5-93 (173) КНРЭк 10х1,5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4406.36 -1735.32)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-3</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -100.437 10702.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-225 КНРЭ 7х2,5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4251.86 10714.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-226 КНРЭ 3х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3760.5 10709)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-277 КНРЭ 3х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3999.24 10712.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-275 КНРЭ 7х2,5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -578.361 10691.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-276 КНРЭ 7х2,5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4444.67 10712.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-224 КНРЭ 7х2,5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 9034.64 -1500.42)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КПЭЖ</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4328.25 -1667.77)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -5118.84 -1736.82)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ПУ4</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -5116.23 -1658.65)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4843.82 -1736.97)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ПУ3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4831.02 -1661.35)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -689.685 1122.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -697.444 1051.76)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ПУ2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -364.381 1052.06)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ПУ1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -361.772 1130.22)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Д5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -344.341 11845.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-3 (93) КНР 19х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -71.6758 11850.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-4 (88) КНР 19х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4577.04 12072)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4512.95 12055.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-201</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8925.37 -803.57)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8909.51 -870.832)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КСИ2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5221.64 211.891)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5206.27 144.628)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КСИ1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 962.037 451.902)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5831.21 12262.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-116 КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5237.92 12261.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-115 КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7045.82 12099.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6975.09 12116.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-5 (165)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6444.55 12264.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-117 КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1698.48 463.844)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х6</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3309.91 306.648)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2281.3 463.844)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х7</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2890.39 463.844)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х8</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3431.66 480.704)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х10</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 8424.53 12100.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-7 (167)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 8509.3 12071.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7701.64 12116.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-6 (166)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7771.69 12092.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4162.84 480.704)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х11</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4884.44 480.704)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х12</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 8024.23 10182.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7960.13 10178.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-202</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6523.21 -778.68)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А3</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 10587.1 10212.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 10521.3 10226.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-8 (160)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11239.4 10197.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-9 (161)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11312.2 10183.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 12041.6 10172.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11970.5 10199.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-10 (162)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 8722.03 10294.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-112 КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 9944.86 10296.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-142  КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 9338.56 10294.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-113 КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4403.03 -937.055)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5166.56 -952.527)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х6</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5807.89 -950.373)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х7</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6404.93 -952.494)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х8</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6987.5 -935.674)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х10</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7718.68 -933.512)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х11</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8440.28 -933.512)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х12</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6874.16 332.041)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">А4</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7054.92 489.83)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х8</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5728.69 478.175)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х5</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 9355.2 12135.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 9273.17 12121.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-203</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11193.4 12135.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-11 (157)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11274.9 12104.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6498.57 483.546)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х7</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7661.94 510.755)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х11</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11913.2 12143.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1-12 (158)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 11991.7 12110)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 2х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8375.31 510.755)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Х12</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8661.65 161.571)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КСИ3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8677.5 228.834)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 1224.03 10408.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 1560.3 10415.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2703.65 10424.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4642.05 10379.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5531.01 10356.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5710.67 10357.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6769.95 10425.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 309.846 11675.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 7х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -3348.48 1072.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> ЩР 2Э </text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 30.2497 1075.42)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ЩР 1Э </text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3676.3 11678)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 7х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2129.65 1127.26)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ГРЩ1П</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5393.42 -1717.09)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ГРЩ1П</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -324.176 10680.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-227 КНРЭ 3х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -805.262 10664.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-278 КНРЭ 3х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 846.53 1047.43)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ11-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 894.659 1123.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4270.95 -1661.91)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ11-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4333.41 -1595.38)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5592.53 1042.03)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ11-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5646.98 1109.05)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6703.72 1120.74)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ЩР1Э</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2215.55 -1711.89)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> ГРЩ2П </text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2122.16 -1706.38)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0"> ГРЩ1П </text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 10127.6 12135.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 10676.7 12136.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 1х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 10049.3 12121.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1Э-29</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 10590.5 12100.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1Э-30</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 726.67 10395.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 7х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 294.446 10749.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-102 (80)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 538.754 10717.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-103 (81)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 988.615 10715.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-104 (82)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 1817.62 10723.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-105 (83)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 1220.76 10714.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-106 (84)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 1558.17 10711.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-107 (90)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2247.34 10725.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-109 (85)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2700.5 10734.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-110 (86)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2477.33 10729.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-111 (87)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4858.13 10717.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-101 (174)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 4641.78 10716.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-102 (175)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5036.65 10727.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-103 (176)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6130.33 10713.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-105 (178)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5320.22 10727.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-104 (177)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5531.26 10729.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-106 (179)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5708.71 10724.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-107 (187)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6326.62 10729)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-109 (180)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6771.45 10742.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-110 (181)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 6547.88 10729)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-111 (182)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 313.276 11948.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2Э-28 (89)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 3678.7 11957.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1Э-28 (184)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3874.81 -1661.64)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80ЭТ3-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3934.1 -1597.41)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3453.24 -1668.24)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80ЭТ3-1-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3531.92 -1606.09)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7156.32 10540.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1633Е</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -818.626 11892.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1633Е</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7559.21 10545.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1633Е</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -1150.33 11896.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1-26</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -1059.47 11892.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1633Е</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7157.46 10723.5)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1-27</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -909.478 11896.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1-6</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 7559.76 10717.2)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1-7</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7355.4 -1216.12)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7208.86 -1092.61)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7085.36 -1092.61)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7086.93 -1145.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7210.44 -1145.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7390.44 -1147.59)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Г2 </text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7037.23 -1214.49)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7163.25 -1214.49)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7323.29 -1093.67)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">(до авт.)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8014.59 -1094.76)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">(после авт.)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7811.43 -1092.61)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7934.94 -1092.61)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7889.32 -1214.49)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7763.31 -1214.49)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7813.01 -1145.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7936.51 -1145.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8081.48 -1216.12)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8116.52 -1147.59)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Г2 </text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8747.72 -1094.76)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">(после авт.)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8668.07 -1092.61)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8544.57 -1092.61)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8496.44 -1214.49)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8622.46 -1214.49)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8546.14 -1145.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8669.65 -1145.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8814.61 -1216.12)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8849.65 -1147.59)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Б1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3762.51 752.27)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">(до авт.)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3524.57 753.328)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3648.08 753.328)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3602.46 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3476.45 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3526.15 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3649.65 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3794.62 629.822)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3829.66 698.344)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Г1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4453.81 751.183)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">(после авт.)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4374.15 753.328)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4250.65 753.328)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4202.52 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4328.54 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4252.22 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4375.73 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4520.69 629.822)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4555.73 698.344)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Г1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5069.06 630.311)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4983.78 753.328)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5107.29 753.328)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4941.91 630.879)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5108.86 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4985.36 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5239.05 752.244)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">(до авт.)</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5253.82 629.822)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5293.98 698.344)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Б1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1720.27 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1846.29 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1769.97 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1893.48 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2429.11 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2303.09 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2476.3 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2352.79 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2923.5 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3049.52 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2973.2 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 3096.71 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6679.84 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6553.83 631.447)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6603.53 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6727.03 700.343)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7245.61 648.271)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7119.6 648.271)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7169.3 717.168)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7292.8 717.168)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7959.92 772.22)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">выпрямителя</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7872.61 771.891)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7749.1 771.891)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7700.98 650.009)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7826.99 650.009)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7750.68 718.904)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 7874.18 718.904)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8019.14 648.384)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8024.64 718.191)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Шина</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8702.57 773.925)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">акк. батарей</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8543.51 650.009)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8417.5 650.009)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8590.7 718.904)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8467.2 718.904)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8465.62 771.891)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8589.13 771.891)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8735.67 648.384)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 8757.64 719.895)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Шина</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6062.97 -1071.05)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5936.95 -1071.05)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5986.65 -1002.15)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6110.16 -1002.15)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5485.5 -1002.43)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5361.99 -1002.43)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5438.31 -1071.32)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5312.29 -1071.32)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6595.01 -1002.15)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6718.52 -1002.15)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6671.33 -1071.05)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6545.32 -1071.05)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4629.63 -1106.03)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4506.12 -1106.03)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4729.91 -1101.52)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">+27 В</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4458 -1227.92)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4507.69 -1159.02)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4592.46 -1230.43)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4631.2 -1159.02)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4747.02 -1226.97)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4729.91 -1159.16)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">-</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 4752.88 -1159.16)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">27 В</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5995.48 714.81)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5871.97 714.81)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6095.76 719.327)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">+27 В</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5832.68 592.929)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5873.55 661.824)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5957.71 592.929)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5997.05 661.824)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6109.93 592.894)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6095.76 661.688)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">-</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6118.73 661.688)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">27 В</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1335.1 567.904)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Цепь</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1332.71 692.374)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">+27 В</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1232.43 687.856)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1108.93 687.856)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1110.5 634.87)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1332.71 634.734)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">-</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1234.01 634.87)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1060.8 565.974)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Конт.</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1186.82 565.974)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">Жила</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1355.68 634.734)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">27 В</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -3929.78 -1734.99)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -3850.32 -1664.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2348.03 -1804.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4844.32 1064.55)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80ЭТ3-1-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4783.03 1127.99)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4561.8 1062.67)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80ЭТ3-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -4517.1 1126.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УК1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6289.63 -1646.55)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">ГРЩ2П</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2317.42 1128.93)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">СУ1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2074.01 10398.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2073.65 10711.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">2П-108 (91)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5920.35 10355.8)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">КМПЭВЭВ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 5919.24 10727.9)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">1П-108 (188)</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 528.487 11873)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-242   КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 687.341 11833.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-51   КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 857.449 11777.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-287 КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2900.22 1059.35)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2823.04 1135.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2610.78 1050.86)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2522.31 1128.98)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2294.44 1050.36)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -2222.83 1127.73)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -1682.7 1049.11)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-4</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -1597.39 1126.48)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -1367.32 1050.36)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-5</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -1285.44 1127.73)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -1045.66 1049)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-6</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -953.513 1125.23)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2025.21 11821.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-334 КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2339.46 11806.4)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-117 КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 2654.86 11812.7)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2-190 КНРЭ 4х1</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -2364.82 13739)">
+   <text x="8799" y="2539.31"  class="fil1 fnt2">Инв. № подл.</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -2364.82 13392.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt2">Подп. и дата</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -2364.82 13036.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt2">Взам. инв. №</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -2364.82 12735.1)">
+   <text x="8799" y="2539.31"  class="fil1 fnt2">Инв. № дубл.</text>
+  </g>
+  <g transform="matrix(6.12303E-017 -1 1 6.12303E-017 -2364.82 12388.6)">
+   <text x="8799" y="2539.31"  class="fil1 fnt2">Подп. и дата</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 152.429 -1746.07)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-3</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 236.554 -1678.51)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 629.371 -1745.07)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">80КТ-Ф3-1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 714.484 -1675.04)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">УС2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 1970.13 -1799.21)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 5237.82 -1808.38)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6117.49 -1737.52)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -3441.29 1167.31)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 -82.5783 1167.31)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 2058.71 1225.3)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО1</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 6527.3 1203.11)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">20380.360086.001 ТО2</text>
+  </g>
+  <g transform="matrix(0.7 0 0 1 11261.5 2387.59)">
+   <text x="8799" y="2539.31"  class="fil1 fnt0">28</text>
+  </g>
+  <path class="fil0 str1" d="M17509.4 604.177l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str1" d="M17509.4 722.285l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 911.256l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1005.74l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1100.23l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1194.71l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1289.2l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1383.69l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1478.17l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1572.66l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1667.14l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1761.63l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1856.12l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 1950.6l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2045.09l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2139.57l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2234.06l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2328.54l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2423.03l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2517.52l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2612l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str2" d="M17509.4 2706.49l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str1" d="M17509.4 2800.97l0 0m-1771.61 0l1771.61 0"/>
+  <path class="fil0 str1" d="M15737.8 604.177l0 0m0 0l0 2196.8"/>
+  <path class="fil0 str2" d="M15855.9 604.177l0 0m0 0l0 2196.8"/>
+  <path class="fil0 str2" d="M17509.4 604.177l0 0m0 0l0 3425.11"/>
+  <path class="fil0 str2" d="M17509.4 816.77l0 0m-1653.5 0l1653.5 0"/>
+  <path class="fil0 str2" d="M15855.9 816.77l0 0m-118.107 0l118.107 0"/>
+  <path class="fil0 str1" d="M17509.4 4781.94l0 0m-2184.99 0l2184.99 0"/>
+  <path class="fil0 str1" d="M15324.4 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str3" d="M16092.1 4840.99l0 0m-767.698 0l767.698 0"/>
+  <path class="fil0 str1" d="M16092.1 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str1" d="M15407.1 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str1" d="M15796.9 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str1" d="M15974 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str1" d="M15525.2 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str1" d="M15407.1 4900.05l0 0m-82.6752 0l82.6752 0"/>
+  <path class="fil0 str1" d="M15525.2 4900.05l0 0m-118.109 0l118.109 0"/>
+  <path class="fil0 str1" d="M15796.9 4900.05l0 0m-271.647 0l271.647 0"/>
+  <path class="fil0 str1" d="M15974 4900.05l0 0m-177.161 0l177.161 0"/>
+  <path class="fil0 str1" d="M16092.1 4900.05l0 0m-118.109 0l118.109 0"/>
+  <path class="fil0 str1" d="M17391.3 4781.94l0 0m0 177.161l0 -177.161"/>
+  <path class="fil0 str1" d="M17509.4 4864.61l0 0m-118.107 0l118.107 0"/>
+  <path class="fil0 str1" d="M17509.4 116.697l0 0m0 0l0 4842.4"/>
+  <path class="fil0 str4" d="M17568.5 57.6435l0 0m0 0l0 4960.51"/>
+  <line class="fil0 str2" x1="1016.38" y1="822.853" x2="1131.23" y2= "822.853" />
+  <line class="fil0 str2" x1="1291.11" y1="821.242" x2="1405.96" y2= "821.242" />
+  <line class="fil0 str2" x1="5437.77" y1="3611.43" x2="5552.62" y2= "3611.43" />
+  <line class="fil0 str2" x1="5770.84" y1="3611.73" x2="5885.68" y2= "3611.73" />
+  <path class="fil0 str2" d="M13922.7 787.011l0 0m-235.722 0l235.722 0"/>
+  <line class="fil0 str1" x1="5563.18" y1="967.219" x2="5563.18" y2= "2068.66" />
+  <line class="fil0 str1" x1="5943.49" y1="967.219" x2="5943.49" y2= "2068.66" />
+  <line class="fil0 str1" x1="3284.74" y1="967.219" x2="3284.74" y2= "2068.66" />
+  <line class="fil0 str1" x1="2853.78" y1="967.219" x2="2853.78" y2= "2068.66" />
+  <line class="fil0 str1" x1="3094.92" y1="967.219" x2="3094.92" y2= "2068.66" />
+  <line class="fil0 str1" x1="3546.82" y1="967.219" x2="3546.82" y2= "2068.66" />
+  <line class="fil0 str1" x1="4376.29" y1="967.219" x2="4376.29" y2= "2068.66" />
+  <line class="fil0 str1" x1="3780.7" y1="967.219" x2="3780.7" y2= "2068.66" />
+  <line class="fil0 str1" x1="4116.09" y1="966.436" x2="4116.09" y2= "2068.66" />
+  <line class="fil0 str1" x1="4806.82" y1="967.219" x2="4806.82" y2= "2068.66" />
+  <line class="fil0 str1" x1="5259.81" y1="967.219" x2="5259.81" y2= "2068.66" />
+  <line class="fil0 str1" x1="5036.8" y1="967.219" x2="5036.8" y2= "2068.66" />
+  <line class="fil0 str1" x1="7417.12" y1="967.219" x2="7417.12" y2= "2068.66" />
+  <line class="fil0 str1" x1="7199.17" y1="971.047" x2="7199.17" y2= "2068.66" />
+  <line class="fil0 str1" x1="7595.64" y1="967.219" x2="7595.64" y2= "2068.66" />
+  <line class="fil0 str1" x1="7877.23" y1="970.78" x2="7877.23" y2= "2068.66" />
+  <line class="fil0 str1" x1="8688.41" y1="967.219" x2="8688.41" y2= "2068.66" />
+  <line class="fil0 str1" x1="8088.28" y1="967.859" x2="8088.28" y2= "2068.66" />
+  <line class="fil0 str1" x1="8266.79" y1="968.263" x2="8266.79" y2= "2068.66" />
+  <path class="fil0 str1" d="M8885.44 967.125l0 0m0 0l0 1101.53"/>
+  <path class="fil0 str1" d="M9328.12 967.219l0 0m0 0l0 1101.44"/>
+  <path class="fil0 str1" d="M9106.7 967.125l0 0m0 0l0 1101.53"/>
+  <line class="fil0 str1" x1="6320.87" y1="967.342" x2="6320.87" y2= "2068.66" />
+  <line class="fil0 str1" x1="1981.03" y1="967.219" x2="1981.03" y2= "2068.66" />
+  <line class="fil0 str1" x1="6560.38" y1="967.661" x2="6560.38" y2= "2068.66" />
+  <line class="fil0 str1" x1="6812.34" y1="966.757" x2="6812.34" y2= "2068.66" />
+  <line class="fil0 str1" x1="2458.88" y1="967.219" x2="2458.88" y2= "2068.66" />
+  <line class="fil0 str1" x1="7006.03" y1="967.219" x2="7006.03" y2= "2068.66" />
+  <path class="fil0 str2" d="M10639.9 2139.77l0 0m-122.496 0l122.496 0"/>
+  <line class="fil0 str2" x1="1749.66" y1="818.2" x2="1990.32" y2= "818.2" />
+  <line class="fil0 str1" x1="2216.78" y1="2449.87" x2="2216.78" y2= "3495.77" />
+  <line class="fil0 str1" x1="2489.32" y1="2449.87" x2="2489.32" y2= "3495.77" />
+  <path class="fil0 str2" d="M10626.1 893.873l0 0m-198.15 0l198.15 0"/>
+  <line class="fil0 str2" x1="6973.74" y1="3608.08" x2="7214.4" y2= "3608.08" />
+  <path class="fil0 str2" d="M15167.2 1685.3l0 0m-98.4354 0l98.4354 0"/>
+  <path class="fil0 str2" d="M11463.5 2700.76l0 0m-98.4354 0l98.4354 0"/>
+  <line class="fil0 str1" x1="6941.39" y1="2881.86" x2="11354.7" y2= "2881.86" />
+  <path class="fil0 str1" d="M11354.7 2760.13l0 0m0 0l-4413.3 2.31963"/>
+  <line class="fil0 str1" x1="7066.36" y1="2999.97" x2="7066.36" y2= "3495.77" />
+  <line class="fil0 str1" x1="6941.39" y1="2762.45" x2="6941.39" y2= "2881.86" />
+  <line class="fil0 str1" x1="7066.36" y1="2955.68" x2="7095.89" y2= "2926.15" />
+  <line class="fil0 str1" x1="7066.36" y1="2955.68" x2="7036.83" y2= "2926.15" />
+  <line class="fil0 str1" x1="7036.83" y1="2881.86" x2="7036.83" y2= "2999.97" />
+  <line class="fil0 str1" x1="7095.89" y1="2999.97" x2="7095.89" y2= "2881.86" />
+  <line class="fil0 str1" x1="7036.83" y1="2999.97" x2="7095.89" y2= "2999.97" />
+  <path class="fil0 str1" d="M9528.29 2999.97l0 0m0 0l0 495.804"/>
+  <path class="fil0 str1" d="M9004.87 2999.97l0 0m0 0l0 495.804"/>
+  <line class="fil0 str1" x1="8384.46" y1="2999.97" x2="8384.46" y2= "3495.77" />
+  <line class="fil0 str1" x1="7801.64" y1="2999.97" x2="7801.64" y2= "3495.77" />
+  <line class="fil0 str1" x1="7831.17" y1="2999.97" x2="7831.17" y2= "2881.86" />
+  <line class="fil0 str1" x1="7772.11" y1="2881.86" x2="7772.11" y2= "2999.97" />
+  <line class="fil0 str1" x1="7801.64" y1="2955.68" x2="7772.11" y2= "2926.15" />
+  <line class="fil0 str1" x1="7801.64" y1="2955.68" x2="7831.17" y2= "2926.15" />
+  <line class="fil0 str1" x1="7772.11" y1="2999.97" x2="7831.17" y2= "2999.97" />
+  <line class="fil0 str1" x1="8413.98" y1="2999.97" x2="8413.98" y2= "2881.86" />
+  <line class="fil0 str1" x1="8384.46" y1="2955.68" x2="8354.93" y2= "2926.15" />
+  <line class="fil0 str1" x1="8354.93" y1="2881.86" x2="8354.93" y2= "2999.97" />
+  <line class="fil0 str1" x1="8384.46" y1="2955.68" x2="8413.98" y2= "2926.15" />
+  <line class="fil0 str1" x1="8354.93" y1="2999.97" x2="8413.98" y2= "2999.97" />
+  <line class="fil0 str1" x1="9004.87" y1="2955.68" x2="8975.34" y2= "2926.15" />
+  <path class="fil0 str1" d="M9034.4 2926.15l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M8975.34 2881.86l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M9034.4 2881.86l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M9034.4 2999.97l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M9557.81 2926.15l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <line class="fil0 str1" x1="9528.29" y1="2955.68" x2="9498.76" y2= "2926.15" />
+  <path class="fil0 str1" d="M9498.76 2881.86l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M9557.81 2881.86l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M9557.81 2999.97l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M10987.5 2999.97l0 0m0 0l0 495.804"/>
+  <path class="fil0 str1" d="M10254.4 2999.97l0 0m0 0l0 495.804"/>
+  <line class="fil0 str1" x1="10254.4" y1="2955.68" x2="10224.8" y2= "2926.15" />
+  <path class="fil0 str1" d="M10224.8 2881.86l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M10283.9 2926.15l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M10283.9 2881.86l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M10283.9 2999.97l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M11017 2926.15l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M11017 2881.86l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M10958 2881.86l0 0m0 0l0 118.107"/>
+  <line class="fil0 str1" x1="10987.5" y1="2955.68" x2="10958" y2= "2926.15" />
+  <path class="fil0 str1" d="M11017 2999.97l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M11354.7 2760.13l0 0m0 119.407l0 -119.407"/>
+  <path class="fil0 str1" d="M10512.4 967.219l0 0m0 581.19l0 -581.19"/>
+  <path class="fil0 str1" d="M10482.8 1548.41l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M10541.9 1548.41l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M10541.9 1548.41l0 0m-59.0537 0l59.0537 0"/>
+  <line class="fil0 str1" x1="10512.4" y1="1592.5" x2="10541.9" y2= "1622.02" />
+  <path class="fil0 str1" d="M10512.4 1592.5l0 0m0 0l-29.5268 29.5268"/>
+  <path class="fil0 str1" d="M15036.3 1666.21l0 0m0 0l-4842.14 0"/>
+  <path class="fil0 str1" d="M15036.3 1785.62l0 0m-4842.14 0l4842.14 0"/>
+  <path class="fil0 str1" d="M10194.2 1666.21l0 0m0 0l0 119.408"/>
+  <path class="fil0 str1" d="M15036.3 1666.21l0 0m0 119.408l0 -119.408"/>
+  <path class="fil0 str1" d="M13072.7 967.219l0 0m0 581.042l0 -581.042"/>
+  <path class="fil0 str1" d="M13798.8 967.219l0 0m0 581.003l0 -581.003"/>
+  <path class="fil0 str1" d="M13769.3 1548.22l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M13828.3 1548.22l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M13043.2 1548.26l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M13102.2 1548.26l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M13102.2 1548.26l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M13828.3 1548.22l0 0m-59.0537 0l59.0537 0"/>
+  <line class="fil0 str1" x1="13072.7" y1="1592.55" x2="13102.2" y2= "1622.08" />
+  <path class="fil0 str1" d="M13072.7 1592.55l0 0m0 0l-29.5268 29.5268"/>
+  <line class="fil0 str1" x1="13798.8" y1="1592.51" x2="13828.3" y2= "1622.04" />
+  <path class="fil0 str1" d="M13798.8 1592.51l0 0m0 0l-29.5268 29.5268"/>
+  <path class="fil0 str1" d="M14531.9 967.219l0 0m0 580.963l0 -580.963"/>
+  <path class="fil0 str1" d="M14561.5 1548.18l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M14502.4 1548.18l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M14561.5 1548.18l0 0m-59.0537 0l59.0537 0"/>
+  <line class="fil0 str1" x1="14531.9" y1="1592.47" x2="14561.5" y2= "1622" />
+  <path class="fil0 str1" d="M14531.9 1592.47l0 0m0 0l-29.5268 29.5268"/>
+  <path class="fil0 str1" d="M11275 966.943l0 0m0 581.159l0 -581.159"/>
+  <path class="fil0 str1" d="M11899.6 967.219l0 0m0 581.121l0 -581.121"/>
+  <path class="fil0 str1" d="M11304.5 1548.1l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M11245.4 1548.1l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M11304.5 1548.1l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M11275 1592.39l0 0m0 0l-29.5268 29.5268"/>
+  <line class="fil0 str1" x1="11275" y1="1592.39" x2="11304.5" y2= "1621.92" />
+  <path class="fil0 str1" d="M12478.5 1548.3l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M12537.5 1548.3l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M11870.1 1548.34l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M11929.2 1548.34l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M11929.2 1548.34l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M12537.5 1548.3l0 0m-59.0537 0l59.0537 0"/>
+  <line class="fil0 str1" x1="11899.6" y1="1592.63" x2="11929.2" y2= "1622.16" />
+  <path class="fil0 str1" d="M11899.6 1592.63l0 0m0 0l-29.5268 29.5268"/>
+  <path class="fil0 str1" d="M12508 1592.59l0 0m0 0l-29.5268 29.5268"/>
+  <line class="fil0 str1" x1="12508" y1="1592.59" x2="12537.5" y2= "1622.12" />
+  <path class="fil0 str1" d="M12508 967.219l0 0m0 581.082l0 -581.082"/>
+  <path class="fil0 str1" d="M14818.2 2782.66l0 0m0 0l-3155.09 0"/>
+  <path class="fil0 str1" d="M14818.2 2902.07l0 0m-3155.09 0l3155.09 0"/>
+  <path class="fil0 str1" d="M13755.6 3020.17l0 0m0 0l0 475.597"/>
+  <path class="fil0 str1" d="M13153.2 3020.17l0 0m0 0l0 475.597"/>
+  <path class="fil0 str1" d="M12602.4 3020.17l0 0m0 0l0 475.597"/>
+  <path class="fil0 str1" d="M11830 3020.17l0 0m0 0l0 475.597"/>
+  <path class="fil0 str1" d="M11663.1 2782.66l0 0m0 0l0 119.407"/>
+  <path class="fil0 str1" d="M11859.5 2902.07l0 0m0 118.107l0 -118.107"/>
+  <line class="fil0 str1" x1="11830" y1="2975.88" x2="11800.5" y2= "2946.36" />
+  <path class="fil0 str1" d="M11800.5 2902.07l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M11859.5 2946.36l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M11859.5 3020.17l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M12631.9 2902.07l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M12572.8 2902.07l0 0m0 0l0 118.107"/>
+  <line class="fil0 str1" x1="12602.4" y1="2975.88" x2="12572.8" y2= "2946.36" />
+  <path class="fil0 str1" d="M12631.9 2946.36l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M12631.9 3020.17l0 0m-59.0537 0l59.0537 0"/>
+  <line class="fil0 str1" x1="13153.2" y1="2975.88" x2="13123.7" y2= "2946.36" />
+  <path class="fil0 str1" d="M13123.7 2902.07l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M13182.7 2902.07l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M13182.7 2946.36l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M13182.7 3020.17l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M13726 2902.07l0 0m0 0l0 118.107"/>
+  <path class="fil0 str1" d="M13785.1 2902.07l0 0m0 118.107l0 -118.107"/>
+  <line class="fil0 str1" x1="13755.6" y1="2975.88" x2="13726" y2= "2946.36" />
+  <path class="fil0 str1" d="M13785.1 2946.36l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M13785.1 3020.17l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M14472.1 3020.17l0 0m0 0l0 475.597"/>
+  <path class="fil0 str1" d="M14501.6 2902.07l0 0m0 118.107l0 -118.107"/>
+  <path class="fil0 str1" d="M14442.6 2902.07l0 0m0 0l0 118.107"/>
+  <line class="fil0 str1" x1="14472.1" y1="2975.88" x2="14442.6" y2= "2946.36" />
+  <path class="fil0 str1" d="M14501.6 2946.36l0 0m-29.5268 29.5268l29.5268 -29.5268"/>
+  <path class="fil0 str1" d="M14501.6 3020.17l0 0m-59.0537 0l59.0537 0"/>
+  <path class="fil0 str1" d="M14818.2 2782.66l0 0m0 119.407l0 -119.407"/>
+  <path class="fil0 str2" d="M14919.4 2717.7l0 0m-98.4342 0l98.4342 0"/>
+  <line class="fil0 str1" x1="2871.29" y1="2449.87" x2="2871.29" y2= "3495.77" />
+  <line class="fil0 str1" x1="6237.25" y1="2449.87" x2="6237.25" y2= "3495.77" />
+  <line class="fil0 str1" x1="2237.05" y1="969.553" x2="2237.05" y2= "2068.66" />
+  <line class="fil0 str1" x1="1754.9" y1="967.219" x2="1754.9" y2= "2068.66" />
+  <line class="fil0 str1" x1="1058.59" y1="935.68" x2="1058.59" y2= "2068.66" />
+  <line class="fil0 str1" x1="1347.03" y1="935.68" x2="1347.03" y2= "2068.66" />
+  <line class="fil0 str1" x1="5487.66" y1="2449.87" x2="5487.66" y2= "3495.77" />
+  <line class="fil0 str1" x1="5812.55" y1="2449.87" x2="5812.55" y2= "3495.77" />
+  <path class="fil0 str2" d="M11931.1 3595.4l0 0m-169.194 0l169.194 0"/>
+  <line class="fil0 str1" x1="1410.98" y1="2449.87" x2="1410.98" y2= "3495.77" />
+  <path class="fil0 str1" d="M10119.3 967.219l0 0m0 0l0 1101.44"/>
+  <path class="fil0 str1" d="M9711.76 967.219l0 0m0 0l0 1101.44"/>
+  <line class="fil0 str1" x1="1651.82" y1="2449.87" x2="1651.82" y2= "3495.77" />
+  <path class="fil0 str2" d="M10195.9 892.777l0 0m-148.371 0l148.371 0"/>
+  <path class="fil0 str2" d="M9819.37 884.885l0 0m-190.663 0l190.663 0"/>
+  <path class="fil0 str2" d="M13190.8 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M13314.3 1263.66l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M13430 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M13723.9 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M13723.9 1343.31l0 0m0 0l-530.284 0"/>
+  <path class="fil0 str2" d="M13430 1401.69l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M13723.9 1460.07l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M13723.9 1262.7l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M13190.8 1460.07l0 0m-101.708 108.15l101.708 -108.15"/>
+  <path class="fil0 str2" d="M13916.9 1460.07l0 0m-101.707 108.15l101.707 -108.15"/>
+  <path class="fil0 str2" d="M14450 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M14156 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M14040.4 1263.66l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M13916.9 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M14450 1460.07l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M14450 1343.31l0 0m0 0l-530.284 0"/>
+  <path class="fil0 str2" d="M14450 1262.7l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M14156 1401.69l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M14650 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M14773.5 1263.66l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M14889.2 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M15183.1 1262.7l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M15183.1 1460.07l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M15183.1 1262.7l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M15183.1 1343.31l0 0m0 0l-530.284 0"/>
+  <path class="fil0 str2" d="M14889.2 1401.69l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M14650 1460.07l0 0m-101.708 108.15l101.708 -108.15"/>
+  <path class="fil0 str2" d="M10163.1 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M9869.19 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M9753.5 3109.6l0 0m0 0l0 196.404"/>
+  <path class="fil0 str2" d="M9629.99 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M10163.1 3306l0 0m0 0l-533.138 0"/>
+  <path class="fil0 str2" d="M10163.1 3189.25l0 0m0 0l-530.284 0"/>
+  <path class="fil0 str2" d="M10163.1 3108.64l0 0m0 0l-533.138 0"/>
+  <path class="fil0 str2" d="M9869.19 3247.63l0 0m0 0l-236.339 0"/>
+  <line class="fil0 str2" x1="9542.68" y1="2979.78" x2="9629.99" y2= "3108.64" />
+  <path class="fil0 str2" d="M10356.1 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M10479.6 3109.6l0 0m0 0l0 196.404"/>
+  <path class="fil0 str2" d="M10595.3 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M10889.2 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M10889.2 3306l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M10889.2 3108.64l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M10889.2 3189.25l0 0m0 0l-530.284 0"/>
+  <path class="fil0 str2" d="M10595.3 3247.63l0 0m0 0l-236.339 0"/>
+  <line class="fil0 str2" x1="10270.6" y1="2985.28" x2="10356.1" y2= "3108.64" />
+  <path class="fil0 str2" d="M11328.4 3247.63l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M11622.3 3189.25l0 0m0 0l-530.284 0"/>
+  <path class="fil0 str2" d="M11622.3 3108.64l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M11622.3 3306l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M11212.7 3109.6l0 0m0 0l0 196.404"/>
+  <path class="fil0 str2" d="M11089.2 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M11622.3 3108.64l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M11328.4 3108.64l0 0m0 0l0 197.368"/>
+  <line class="fil0 str2" x1="11005.8" y1="2983.82" x2="11089.2" y2= "3108.64" />
+  <line class="fil0 str2" x1="8113.01" y1="3108.64" x2="7873.82" y2= "3108.64" />
+  <line class="fil0 str2" x1="8113.01" y1="3189.25" x2="7876.67" y2= "3189.25" />
+  <line class="fil0 str2" x1="7873.82" y1="3108.64" x2="7873.82" y2= "3247.63" />
+  <line class="fil0 str2" x1="7997.33" y1="3109.6" x2="7997.33" y2= "3247.63" />
+  <line class="fil0 str2" x1="8113.01" y1="3108.64" x2="8113.01" y2= "3247.63" />
+  <line class="fil0 str2" x1="8113.01" y1="3247.63" x2="7876.67" y2= "3247.63" />
+  <line class="fil0 str2" x1="7817.17" y1="2981.43" x2="7873.82" y2= "3108.64" />
+  <line class="fil0 str2" x1="8399.99" y1="2981.43" x2="8456.64" y2= "3108.64" />
+  <line class="fil0 str2" x1="8456.64" y1="3108.64" x2="8456.64" y2= "3247.63" />
+  <line class="fil0 str2" x1="8580.14" y1="3109.6" x2="8580.14" y2= "3247.63" />
+  <line class="fil0 str2" x1="8695.83" y1="3108.64" x2="8695.83" y2= "3247.63" />
+  <line class="fil0 str2" x1="8695.83" y1="3247.63" x2="8459.49" y2= "3247.63" />
+  <line class="fil0 str2" x1="8695.83" y1="3189.25" x2="8459.49" y2= "3189.25" />
+  <line class="fil0 str2" x1="8695.83" y1="3108.64" x2="8456.64" y2= "3108.64" />
+  <path class="fil0 str2" d="M9316.24 3108.64l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M9200.55 3109.6l0 0m0 0l0 138.029"/>
+  <path class="fil0 str2" d="M9077.05 3108.64l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M9316.24 3189.25l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M9316.24 3247.63l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M9316.24 3108.64l0 0m0 0l-239.192 0"/>
+  <line class="fil0 str2" x1="9020.4" y1="2981.43" x2="9077.05" y2= "3108.64" />
+  <path class="fil0 str2" d="M12707.4 3108.64l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M12830.9 3109.6l0 0m0 0l0 138.029"/>
+  <path class="fil0 str2" d="M12946.6 3108.64l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M12946.6 3247.63l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M12946.6 3189.25l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M12946.6 3108.64l0 0m0 0l-239.191 0"/>
+  <line class="fil0 str2" x1="12611" y1="2993.92" x2="12707.4" y2= "3108.64" />
+  <path class="fil0 str2" d="M13273.1 3125.46l0 0m0 0l0 138.991"/>
+  <path class="fil0 str2" d="M13391.6 3126.42l0 0m0 0l0 138.029"/>
+  <path class="fil0 str2" d="M13512.3 3125.46l0 0m0 0l0 138.991"/>
+  <path class="fil0 str2" d="M13512.3 3264.45l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M13512.3 3206.08l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M13512.3 3125.46l0 0m0 0l-239.192 0"/>
+  <line class="fil0 str2" x1="13172.1" y1="2998.25" x2="13273.1" y2= "3125.46" />
+  <path class="fil0 str2" d="M13854.5 3127.2l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M13978 3128.16l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M14093.7 3127.2l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M14387.7 3127.2l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M14387.7 3324.57l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M14387.7 3127.2l0 0m0 0l-533.137 0"/>
+  <path class="fil0 str2" d="M14387.7 3207.81l0 0m0 0l-530.283 0"/>
+  <path class="fil0 str2" d="M14093.7 3266.19l0 0m0 0l-236.339 0"/>
+  <line class="fil0 str2" x1="13770.2" y1="3001.69" x2="13854.5" y2= "3127.2" />
+  <line class="fil0 str2" x1="14486.7" y1="3001.69" x2="14571" y2= "3127.2" />
+  <path class="fil0 str2" d="M15127.4 3207.81l0 0m0 0l-553.542 0"/>
+  <path class="fil0 str2" d="M15127.4 3127.2l0 0m0 0l-556.394 0"/>
+  <path class="fil0 str2" d="M15127.4 3324.57l0 0m0 0l-556.394 0"/>
+  <path class="fil0 str2" d="M14810.2 3127.2l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M14694.6 3128.16l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M14571 3127.2l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M14810.2 3266.19l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M15127.4 3127.2l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M12090.5 1406.14l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M12214 1407.1l0 0m0 0l0 138.029"/>
+  <path class="fil0 str2" d="M12329.7 1406.14l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M12329.7 1545.13l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M12329.7 1486.76l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M12329.7 1406.14l0 0m0 0l-239.191 0"/>
+  <path class="fil0 str2" d="M12090.5 1406.14l0 0m-179.932 161.372l179.932 -161.372"/>
+  <path class="fil0 str2" d="M11465.8 1405.87l0 0m-179.932 161.372l179.932 -161.372"/>
+  <path class="fil0 str2" d="M11705 1405.87l0 0m0 0l0 138.991"/>
+  <path class="fil0 str2" d="M11589.3 1406.83l0 0m0 0l0 138.029"/>
+  <path class="fil0 str2" d="M11465.8 1405.87l0 0m0 0l0 138.991"/>
+  <path class="fil0 str2" d="M11705 1544.86l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M11705 1486.48l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M11705 1405.87l0 0m0 0l-239.191 0"/>
+  <path class="fil0 str2" d="M12698.9 1406.14l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M12822.4 1407.1l0 0m0 0l0 138.029"/>
+  <path class="fil0 str2" d="M12938.1 1406.14l0 0m0 0l0 138.992"/>
+  <path class="fil0 str2" d="M12938.1 1545.13l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M12938.1 1486.76l0 0m0 0l-236.339 0"/>
+  <path class="fil0 str2" d="M12938.1 1406.14l0 0m0 0l-239.191 0"/>
+  <path class="fil0 str2" d="M12698.9 1406.14l0 0m-179.932 161.372l179.932 -161.372"/>
+  <path class="fil0 str2" d="M10735 1250.24l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M11052 1249.27l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M10850.7 1249.27l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M10611.5 1249.27l0 0m0 0l0 197.369"/>
+  <path class="fil0 str2" d="M11052 1446.64l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M11052 1388.27l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M11052 1329.89l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M11052 1249.27l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M10611.5 1446.64l0 0m-88.2416 123.251l88.2416 -123.251"/>
+  <path class="fil0 str2" d="M12100.9 3071.08l0 0m0 0l0 196.405"/>
+  <path class="fil0 str2" d="M12417.9 3070.12l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M12216.6 3070.12l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M11977.4 3070.12l0 0m0 0l0 197.368"/>
+  <path class="fil0 str2" d="M12417.9 3267.49l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M12417.9 3209.11l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M12417.9 3150.73l0 0m0 0l-440.491 0"/>
+  <path class="fil0 str2" d="M12417.9 3070.12l0 0m0 0l-440.491 0"/>
+  <line class="fil0 str2" x1="11840.6" y1="3009.87" x2="11977.4" y2= "3070.12" />
+  <line class="fil0 str2" x1="7654.84" y1="3182.16" x2="7214.35" y2= "3182.16" />
+  <line class="fil0 str2" x1="7654.84" y1="3123.78" x2="7214.35" y2= "3123.78" />
+  <line class="fil0 str2" x1="7654.84" y1="3043.16" x2="7214.35" y2= "3043.16" />
+  <line class="fil0 str2" x1="7654.84" y1="3240.53" x2="7214.35" y2= "3240.53" />
+  <line class="fil0 str2" x1="7337.85" y1="3044.13" x2="7337.85" y2= "3240.53" />
+  <line class="fil0 str2" x1="7453.54" y1="3043.16" x2="7453.54" y2= "3240.53" />
+  <line class="fil0 str2" x1="7214.35" y1="3043.16" x2="7214.35" y2= "3240.53" />
+  <line class="fil0 str2" x1="7654.84" y1="3043.16" x2="7654.84" y2= "3240.53" />
+  <line class="fil0 str2" x1="7077.6" y1="2982.91" x2="7214.35" y2= "3043.16" />
+  <line class="fil0 str2" x1="2224.6" y1="820.173" x2="2465.26" y2= "820.173" />
+  <line class="fil0 str2" x1="1596.28" y1="3617.08" x2="1771.14" y2= "3617.08" />
+  <line class="fil0 str1" x1="3588.4" y1="2449.87" x2="3737.99" y2= "2485.7" />
+  <line class="fil0 str1" x1="3737.99" y1="2485.7" x2="3587.09" y2= "2527.46" />
+  <line class="fil0 str1" x1="3587.09" y1="2527.46" x2="3738.13" y2= "2551.47" />
+  <path class="fil0 str1" d="M10503.4 2485.7l0 0m0 0l-150.901 41.7616"/>
+  <line class="fil0 str1" x1="10352.5" y1="2527.46" x2="10503.6" y2= "2551.47" />
+  <line class="fil0 str1" x1="10353.9" y1="2449.87" x2="10503.4" y2= "2485.7" />
+  <line class="fil0 str1" x1="4630.88" y1="967.219" x2="4630.88" y2= "2068.66" />
+  <line class="fil0 str1" x1="8477.31" y1="970.044" x2="8477.31" y2= "2068.66" />
+  <line class="fil0 str1" x1="3085.11" y1="2449.87" x2="3085.11" y2= "3242.96" />
+  <line class="fil0 str1" x1="3244.77" y1="2449.87" x2="3244.77" y2= "3074.77" />
+  <line class="fil0 str1" x1="3420.38" y1="2449.87" x2="3420.38" y2= "2914.82" />
+  <line class="fil0 str1" x1="3420.38" y1="2914.82" x2="3954.53" y2= "2914.82" />
+  <line class="fil0 str1" x1="3244.77" y1="3074.77" x2="3629.97" y2= "3074.77" />
+  <line class="fil0 str1" x1="3085.11" y1="3242.96" x2="3386.75" y2= "3242.96" />
+  <line class="fil0 str1" x1="3386.75" y1="3242.96" x2="3386.75" y2= "3495.77" />
+  <line class="fil0 str1" x1="3629.97" y1="3074.77" x2="3629.97" y2= "3495.77" />
+  <line class="fil0 str1" x1="3954.53" y1="2914.82" x2="3954.53" y2= "3495.77" />
+  <line class="fil0 str1" x1="4582.1" y1="3495.77" x2="4582.1" y2= "2449.87" />
+  <line class="fil0 str1" x1="4895.71" y1="3495.77" x2="4895.71" y2= "2449.87" />
+  <line class="fil0 str1" x1="5212.42" y1="3495.77" x2="5212.42" y2= "2449.87" />
+  <line class="fil0 str2" x1="3254.28" y1="3616.73" x2="3482.64" y2= "3616.73" />
+  <line class="fil0 str2" x1="3555.01" y1="3610.49" x2="3783.36" y2= "3610.49" />
+  <line class="fil0 str2" x1="3854.49" y1="3609.25" x2="4107.2" y2= "3609.25" />
+  <line class="fil0 str2" x1="4479.93" y1="3608" x2="4708.28" y2= "3608" />
+  <line class="fil0 str2" x1="4791.88" y1="3609.25" x2="5020.24" y2= "3609.25" />
+  <line class="fil0 str2" x1="5123.81" y1="3606.75" x2="5352.16" y2= "3606.75" />
+  <line class="fil0 str1" x1="265.742" y1="116.697" x2="17509.4" y2= "116.697" />
+  <line class="fil0 str4" x1="29.5268" y1="57.6435" x2="17568.5" y2= "57.6435" />
+  <path class="fil0 str4" d="M17568.5 5018.15l0 0m0 0l-17538.9 0"/>
+  <line class="fil0 str1" x1="124.013" y1="4959.1" x2="124.013" y2= "3246.54" />
+  <line class="fil0 str1" x1="183.066" y1="4959.1" x2="183.066" y2= "3246.54" />
+  <line class="fil0 str1" x1="265.742" y1="3246.54" x2="124.013" y2= "3246.54" />
+  <line class="fil0 str1" x1="265.742" y1="4663.83" x2="124.013" y2= "4663.83" />
+  <line class="fil0 str1" x1="265.742" y1="4250.46" x2="124.013" y2= "4250.46" />
+  <line class="fil0 str1" x1="265.742" y1="3955.19" x2="124.013" y2= "3955.19" />
+  <line class="fil0 str1" x1="265.742" y1="3659.92" x2="124.013" y2= "3659.92" />
+  <line class="fil0 str1" x1="265.742" y1="4959.1" x2="265.742" y2= "116.697" />
+  <path class="fil0 str1" d="M17509.4 4959.1l0 0m0 0l-17385.4 0"/>
+  <line class="fil0 str4" x1="29.5268" y1="5018.15" x2="29.5268" y2= "57.6435" />
+  <line class="fil0 str1" x1="1653.65" y1="975.911" x2="1695.9" y2= "931.005" />
+  <line class="fil0 str1" x1="1695.9" y1="931.005" x2="1835.43" y2= "931.005" />
+  <line class="fil0 str1" x1="1835.43" y1="931.005" x2="1860.68" y2= "893.996" />
+  <line class="fil0 str1" x1="1860.68" y1="893.996" x2="1892.68" y2= "932.688" />
+  <line class="fil0 str1" x1="1892.68" y1="932.688" x2="2037.48" y2= "932.688" />
+  <line class="fil0 str1" x1="2037.48" y1="932.688" x2="2074.53" y2= "981.474" />
+  <line class="fil0 str1" x1="2141.27" y1="975.911" x2="2183.52" y2= "931.005" />
+  <line class="fil0 str1" x1="2183.52" y1="931.005" x2="2323.05" y2= "931.005" />
+  <line class="fil0 str1" x1="2323.05" y1="931.005" x2="2348.31" y2= "893.996" />
+  <line class="fil0 str1" x1="2348.31" y1="893.996" x2="2380.3" y2= "932.688" />
+  <line class="fil0 str1" x1="2380.3" y1="932.688" x2="2525.11" y2= "932.688" />
+  <line class="fil0 str1" x1="2525.11" y1="932.688" x2="2562.15" y2= "981.474" />
+  <line class="fil0 str2" x1="6314.46" y1="807.456" x2="6555.13" y2= "807.456" />
+  <line class="fil0 str2" x1="6789.4" y1="809.431" x2="7030.06" y2= "809.431" />
+  <line class="fil0 str1" x1="6218.45" y1="963" x2="6260.71" y2= "918.095" />
+  <line class="fil0 str1" x1="6260.71" y1="918.095" x2="6400.23" y2= "918.095" />
+  <line class="fil0 str1" x1="6400.23" y1="918.095" x2="6425.49" y2= "881.085" />
+  <line class="fil0 str1" x1="6425.49" y1="881.085" x2="6457.48" y2= "919.777" />
+  <line class="fil0 str1" x1="6457.48" y1="919.777" x2="6602.29" y2= "919.777" />
+  <line class="fil0 str1" x1="6602.29" y1="919.777" x2="6639.33" y2= "968.562" />
+  <line class="fil0 str1" x1="6739.26" y1="963" x2="6781.52" y2= "918.095" />
+  <line class="fil0 str1" x1="6781.52" y1="918.095" x2="6887.85" y2= "918.095" />
+  <line class="fil0 str1" x1="6887.85" y1="918.095" x2="6913.11" y2= "881.085" />
+  <line class="fil0 str1" x1="6913.11" y1="881.085" x2="6945.1" y2= "919.777" />
+  <line class="fil0 str1" x1="6945.1" y1="919.777" x2="7038.98" y2= "919.777" />
+  <line class="fil0 str1" x1="7038.98" y1="919.777" x2="7076.03" y2= "968.562" />
+  <line class="fil0 str1" x1="2805.73" y1="981.474" x2="2840.4" y2= "932.688" />
+  <line class="fil0 str1" x1="2840.4" y1="932.688" x2="3968.15" y2= "932.688" />
+  <line class="fil0 str1" x1="3968.15" y1="932.688" x2="3995.88" y2= "893.996" />
+  <line class="fil0 str1" x1="3995.88" y1="893.996" x2="4027.17" y2= "932.688" />
+  <line class="fil0 str1" x1="4027.17" y1="932.688" x2="5280.54" y2= "932.688" />
+  <line class="fil0 str1" x1="5280.54" y1="932.688" x2="5323.99" y2= "981.474" />
+  <line class="fil0 str1" x1="7164.21" y1="981.474" x2="7198.89" y2= "932.688" />
+  <line class="fil0 str1" x1="7198.89" y1="932.688" x2="8326.64" y2= "932.688" />
+  <line class="fil0 str1" x1="8326.64" y1="932.688" x2="8354.37" y2= "893.996" />
+  <line class="fil0 str1" x1="8354.37" y1="893.996" x2="8385.66" y2= "932.688" />
+  <line class="fil0 str1" x1="8385.66" y1="932.688" x2="9361.16" y2= "932.688" />
+  <line class="fil0 str1" x1="9361.16" y1="932.688" x2="9404.61" y2= "981.474" />
+  <path class="fil0 str1" d="M11277.5 904.021l0 0m-42.2541 44.9044l42.2541 -44.9044"/>
+  <path class="fil0 str1" d="M11579.6 904.021l0 0m-302.092 0l302.092 0"/>
+  <path class="fil0 str1" d="M11604.8 867.011l0 0m-25.2573 37.0101l25.2573 -37.0101"/>
+  <line class="fil0 str1" x1="11604.8" y1="867.011" x2="11636.8" y2= "905.703" />
+  <path class="fil0 str1" d="M11895.7 905.703l0 0m-258.825 0l258.825 0"/>
+  <line class="fil0 str1" x1="11895.7" y1="905.703" x2="11932.7" y2= "954.488" />
+  <line class="fil0 str1" x1="7749.64" y1="3486.41" x2="7795.46" y2= "3536.35" />
+  <line class="fil0 str1" x1="7795.46" y1="3536.35" x2="8350.9" y2= "3536.35" />
+  <line class="fil0 str1" x1="8350.9" y1="3536.35" x2="8393.94" y2= "3580.75" />
+  <line class="fil0 str1" x1="8393.94" y1="3580.75" x2="8431.44" y2= "3536.35" />
+  <line class="fil0 str1" x1="8431.44" y1="3536.35" x2="9034.08" y2= "3536.35" />
+  <path class="fil0 str1" d="M9071.57 3486.41l0 0m-37.492 49.9441l37.492 -49.9441"/>
+  <line class="fil0 str1" x1="12430.1" y1="3478.27" x2="12487.7" y2= "3534.01" />
+  <path class="fil0 str1" d="M12858.6 3534.01l0 0m-370.928 0l370.928 0"/>
+  <line class="fil0 str1" x1="12858.6" y1="3534.01" x2="12892" y2= "3570.04" />
+  <path class="fil0 str1" d="M12922.7 3533.37l0 0m-30.6902 36.6735l30.6902 -36.6735"/>
+  <path class="fil0 str1" d="M13293.6 3533.37l0 0m-370.851 0l370.851 0"/>
+  <path class="fil0 str1" d="M13363.3 3464.42l0 0m-69.7483 68.9487l69.7483 -68.9487"/>
+  <line class="fil0 str2" x1="1311.44" y1="3617.08" x2="1533.46" y2= "3617.08" />
+ </g>
+ <g id="Layer_x0020_1">
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk1/rightside.xml" target="rightside-f">   
+  <g id="80BK1"
+   onmouseover="LinkSelect('_99050200', 'filsel str5'), display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК1', '', 35, 14)" 
+   onmouseout="LinkSelect('_99050200', 'filsel str5'), display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК1','', 35, 14)"  
+  >
+   <rect id="_99050200" class="filsel str5" x="943.607" y="2068.66" width="9530.76" height="381.209"/>
+   <g transform="matrix(0.7 0 0 1 -1911.42 -252.84)">
+    <text x="8799" y="2539.31" id="_75061520" class="fil1 fnt0">А1.1</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 3779.84 -352.182)">
+    <text x="8799" y="2539.31" id="_72595624" class="fil1 fnt0">Секция 2</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 -2522.48 -353.918)">
+    <text x="8799" y="2539.31" id="_153352760" class="fil1 fnt0">Секция 1</text>
+   </g>
+   <line id="_102797296" class="fil0 str6" x1="3988.95" y1="2068.66" x2="3988.95" y2= "2449.87" />
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-1_1"
+   onmouseover="LinkSelect('_95072208', 'filredsel fnt0'), LinkSelect('_98765072', 'filredsel fnt0'),LinkSelect('_73630640', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-1', '', 42, 14)" 
+   onmouseout="LinkSelect('_95072208', 'fil1 fnt0'), LinkSelect('_98765072', 'fil1 fnt0'),LinkSelect('_73630640', 'fil0 str2'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-1','', 42, 14)"     
+  >
+   <polygon id="_72427352" class="fil3" points="5847.66,786.53 6043.07,786.53 6043.07,964.174 5847.66,964.174 "/>
+   <g transform="matrix(0.7 0 0 1 -289.141 -1679.96)">
+    <text x="8799" y="2539.31" id="_95072208" class="fil1 fnt0">80БК3-1</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 -251.028 -1613.29)">
+    <text x="8799" y="2539.31" id="_98765072" class="fil1 fnt0">УС1</text>
+   </g>
+   <line id="_73630640" class="fil0 str2" x1="5870.14" y1="875.577" x2="6017.29" y2= "875.577" />
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-1_2"
+   onmouseover="LinkSelect('_120043696', 'fil0 strredsel'), LinkSelect('_120166552', 'filredsel fnt0'), LinkSelect('_73477912', 'filredsel fnt0'),LinkSelect('_72892200', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-1', '', 42, 14)" 
+   onmouseout="LinkSelect('_120043696', 'fil0 str1'), LinkSelect('_120166552', 'fil1 fnt0'), LinkSelect('_73477912', 'fil1 fnt0'),LinkSelect('_72892200', 'fil0 str2'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-1','', 42, 14)"   
+  >
+   <polygon id="_123934392" class="fil3" points="9409.18,3471.65 11120,3471.65 11120,3703.96 9409.18,3703.96 "/>
+   <g transform="matrix(0.7 0 0 1 4049.42 1157.32)">
+    <text x="8799" y="2539.31" id="_120166552" class="fil1 fnt0">УС1</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 4009.35 1098.64)">
+    <text x="8799" y="2539.31" id="_73477912" class="fil1 fnt0">80БК3-1</text>
+   </g>
+   <path id="_72892200" class="fil0 str2" d="M10319.4 3649.49l0 0m-151.151 0l151.151 0"/>
+   <polyline id="_120043696" class="fil0 str1" points="9429.79,3478.27 9487.32,3534.01 10207.4,3534.01 10240.8,3570.04 10271.5,3533.37 11031.2,3533.37 11100.9,3464.42 "/>
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-2_1"
+   onmouseover="LinkSelect('_119286200', 'filredsel fnt0'), LinkSelect('_119147848', 'filredsel fnt0'),LinkSelect('_113430840', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-2', '', 42, 14)" 
+   onmouseout="LinkSelect('_119286200', 'fil1 fnt0'), LinkSelect('_119147848', 'fil1 fnt0'),LinkSelect('_113430840', 'fil0 str2'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-2','', 42, 14)"    
+  >
+   <polygon id="_74475840" class="fil3" points="5468.52,786.53 5663.93,786.53 5663.93,964.174 5468.52,964.174 "/>
+   <g transform="matrix(0.7 0 0 1 -672.299 -1679.04)">
+    <text x="8799" y="2539.31" id="_119286200" class="fil1 fnt0">80БК3-2</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 -631.674 -1611.78)">
+    <text x="8799" y="2539.31" id="_119147848" class="fil1 fnt0">УС1</text>
+   </g>
+   <line id="_113430840" class="fil0 str2" x1="5488.9" y1="875.945" x2="5640.6" y2= "875.945" />
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-2_2"
+   onmouseover="LinkSelect('_119034576', 'fil0 strredsel'), LinkSelect('_117274456', 'filredsel fnt0'), LinkSelect('_153532224', 'filredsel fnt0'),LinkSelect('_153531728', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-2', '', 42, 14)" 
+   onmouseout="LinkSelect('_119034576', 'fil0 str1'), LinkSelect('_117274456', 'fil1 fnt0'), LinkSelect('_153532224', 'fil1 fnt0'),LinkSelect('_153531728', 'fil0 str2'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-2','', 42, 14)"   
+  >
+   <polygon id="_124655264" class="fil3" points="13634.4,3471.65 14591,3471.65 14591,3703.96 13634.4,3703.96 "/>
+   <g transform="matrix(0.7 0 0 1 7871.5 1094.57)">
+    <text x="8799" y="2539.31" id="_117274456" class="fil1 fnt0">80БК3-2</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 7913.25 1153.8)">
+    <text x="8799" y="2539.31" id="_153532224" class="fil1 fnt0">УС1</text>
+   </g>
+   <path id="_153531728" class="fil0 str2" d="M14196.1 3647.54l0 0m-175.381 0l175.381 0"/>
+   <polyline id="_119034576" class="fil0 str1" points="13642.1,3478.27 13699.6,3534.01 14070.5,3534.01 14104,3570.04 14134.7,3533.37 14505.5,3533.37 14575.3,3464.42 "/>
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-2_3"
+   onmouseover="LinkSelect('_111987776', 'filredsel fnt0'), LinkSelect('_72741880', 'filredsel fnt0'),LinkSelect('_100388248', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-2', '', 42, 14)" 
+   onmouseout="LinkSelect('_111987776', 'fil1 fnt0'), LinkSelect('_72741880', 'fil1 fnt0'),LinkSelect('_100388248', 'fil0 str1'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-2','', 42, 14)"     
+  >
+   <polygon id="_113864672" class="fil3" points="12993.3,701.807 14634.5,701.807 14634.5,964.174 12993.3,964.174 "/>
+   <g transform="matrix(0.7 0 0 1 7566.57 -1770.03)">
+    <text x="8799" y="2539.31" id="_111987776" class="fil1 fnt0">80БК3-2</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 7608.89 -1691.99)">
+    <text x="8799" y="2539.31" id="_72741880" class="fil1 fnt0">УС1</text>
+   </g>
+   <polyline id="_100388248" class="fil0 str1" points="14603.2,968.562 14566.1,919.777 13831.4,919.777 13799.4,881.085 13774.1,918.095 13052.4,918.095 13010.2,963 "/>
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-3"
+   onmouseover="LinkSelect('_153071536', 'filredsel fnt0'), LinkSelect('_72755912', 'filredsel fnt0'),LinkSelect('_118442168', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-3', '', 42, 14)" 
+   onmouseout="LinkSelect('_153071536', 'fil1 fnt0'), LinkSelect('_72755912', 'fil1 fnt0'),LinkSelect('_118442168', 'fil0 str2'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-3','', 42, 14)"     
+  >
+   <polygon id="_153178616" class="fil3" points="2123.52,3519.37 2318.93,3519.37 2318.93,3697.02 2123.52,3697.02 "/>
+   <g transform="matrix(0.7 0 0 1 -4012.78 1062.3)">
+    <text x="8799" y="2539.31" id="_153071536" class="fil1 fnt0">80БК3-3</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 -3975 1129.56)">
+    <text x="8799" y="2539.31" id="_72755912" class="fil1 fnt0">УС1</text>
+   </g>
+   <line id="_118442168" class="fil0 str2" x1="2135.22" y1="3618.43" x2="2312.41" y2= "3618.43" />
+  </g>
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk3/rightside.xml" target="rightside-f">     
+  <g id="80BK3-4"
+   onmouseover="LinkSelect('_72768528', 'filredsel fnt0'), LinkSelect('_72768136', 'filredsel fnt0'),LinkSelect('_73553784', 'fil0 strredsel'),  display(evt, 'Tooltip', 'yes'), updatetips(evt,'80БК3-4', '', 42, 14)" 
+   onmouseout="LinkSelect('_72768528', 'fil1 fnt0'), LinkSelect('_72768136', 'fil1 fnt0'),LinkSelect('_73553784', 'fil0 str2'),  display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'80БК3-4','', 42, 14)"     
+  >
+   <polygon id="_154294536" class="fil3" points="2395.46,3519.37 2590.87,3519.37 2590.87,3697.02 2395.46,3697.02 "/>
+   <g transform="matrix(0.7 0 0 1 -3742.12 1067.67)">
+    <text x="8799" y="2539.31" id="_72768528" class="fil1 fnt0">80БК3-4</text>
+   </g>
+   <g transform="matrix(0.7 0 0 1 -3702.2 1135.53)">
+    <text x="8799" y="2539.31" id="_72768136" class="fil1 fnt0">УС1</text>
+   </g>
+   <line id="_73553784" class="fil0 str2" x1="2399.87" y1="3623.8" x2="2595.5" y2= "3623.8" />
+  </g>
+</a>  
+ </g>
+<g id="control">
+ <g id="ZoomIn" opacity="0.8" onclick="ZoomControlIn()"
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Увеличить', '', 53, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Увеличить','', 53, 14)"   
+ >
+   <rect x="5" y="5" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="30" height="30"/>
+  <g transform="translate(-63.5,-60), scale(0.12,0.12)">
+   <circle fill="#e0e0e0" stroke="#555555" stroke-width="12" cx="736.471" cy="636.917" r="42.101"/>
+   <line fill="none" stroke="#555555" stroke-width="23" x1="708.044" y1="667.969" x2="626.525" y2= "749.491" />
+   <path fill="none" stroke="#555555" stroke-width="12" d="M709.648 636.917l53.6448 0m-26.823 26.8218l0 -53.6448"/>
+  </g> 
+ </g>
+ <g id="ZoomPanReset" opacity="0.8" onclick="ZoomPanReset()"
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Подогнать размер', '', 88, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Подогнать размер','', 88, 14)"   
+ >   
+   <rect id="ZoomPanReset" x="40" y="5" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="30" height="30"/>   
+  <g transform="translate(-85.5,-59), scale(0.12,0.12)">
+   <circle id="_53893304" fill="#e0e0e0" stroke="#555555" stroke-width="12" cx="1192.69" cy="636.917" r="42.101"/>
+   <line id="_81661456" fill="none" stroke="#555555" stroke-width="23" x1="1164.26" y1="667.969" x2="1082.75" y2= "749.491" />
+   <polygon id="_52651024" fill="#555555" points="1192.24,557.262 1209.56,577.722 1174.92,577.722 "/>
+   <polygon id="_54073000" fill="#555555" points="1192.24,717.43 1209.56,696.97 1174.92,696.97 "/>
+   <polygon id="_53618568" fill="#555555" points="1113.51,638.705 1133.97,621.389 1133.97,656.02 "/>
+   <polygon id="_52648592" fill="#555555" points="1273.68,638.705 1253.22,621.389 1253.22,656.02 "/>
+  </g>   
+ </g>
+ <g id="ZoomOut" opacity="0.8" onclick="ZoomControlOut()"
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Уменьшить', '', 56, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Уменьшить','', 56, 14)"   
+ >   
+   <rect x="75" y="5" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="30" height="30"/>      
+  <g transform="translate(-22.5,-60), scale(0.12,0.12)">
+   <circle id="_53893232" fill="#e0e0e0" stroke="#555555" stroke-width="12" cx="972.78" cy="636.917" r="42.101"/>
+   <line id="_52965008" fill="none" stroke="#555555" stroke-width="23" x1="944.352" y1="667.969" x2="862.833" y2= "749.491" />
+   <line id="_53893472" fill="none" stroke="#555555" stroke-width="12" x1="945.957" y1="636.917" x2="999.602" y2= "636.917" />
+  </g>   
+ </g>
+ <a xlink:href="../../catalog/sostav/fauna/baksan/80bk1/scheme_list07.xml"> 
+  <g id="PrevFoto" opacity="0.8" 
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Предыдущая', '', 64, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Предыдущая','', 64, 14)"   
+   >
+   <rect x="5" y="40" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="48" height="30"/>
+   <g transform="translate(-38,17), scale(0.4,0.4)">   
+  <path id="Prev" fill="#555555" d="M205.91 78.9951l0 28.8955 -41.5624 0 0 16.4483 -4.63288 0 -30.8961 -30.8961 30.8961 -30.8961 4.63288 0 0 16.4483 41.5624 0zm-70.2584 14.4478l19.2306 19.2306 0 -9.61531 41.4113 0 0 -19.2306 -41.4113 0 0 -9.61531 -19.2306 19.2306z"/>
+   </g>   
+ </g> 
+</a>
+<a xlink:href="../../catalog/sostav/fauna/baksan/80bk1/scheme_list02.xml"> 
+ <g id="NextFoto" opacity="0.8" 
+   onmouseover="display(evt, 'Tooltip', 'yes'), updatetips(evt,'Следующая', '', 60, 14)" 
+   onmouseout="display(evt, 'Tooltip', 'none')"
+   onmousemove="updatetips(evt,'Следующая','', 60, 14)"   
+ >
+   <rect x="58" y="40" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-miterlimit="1" width="47" height="30"/>
+   <g transform="translate(-40,17), scale(0.4,0.4)">   
+     <path id="Next" fill="#555555" d="M271.234 78.9951l0 28.8955 41.5624 0 0 16.4483 4.63288 0 30.8961 -30.8961 -30.8961 -30.8961 -4.63288 0 0 16.4483 -41.5624 0zm70.2584 14.4478l-19.2306 19.2306 0 -9.61531 -41.4113 0 0 -19.2306 41.4113 0 0 -9.61531 19.2306 19.2306z"/>
+   </g>
+ </g> 
+</a>  
+</g>  
+<g id="Tooltip" display="none">
+    <rect id="Toolbg" x="0.25" y="0.25" opacity="0.9" fill="#ffffff" stroke="#000000" stroke-width="0.5" stroke-miterlimit="1" width="50" height="14"/>
+    <text transform="matrix(0.8647 0 0 1 3.249 10.6948)" font-family="'ArialMT'" font-size="11"><tspan id="Tooltext1"> </tspan></text>
+    <text transform="matrix(0.8647 0 0 1 3.249 22.6948)" font-family="'ArialMT'" font-size="11"><tspan id="Tooltext2"> </tspan></text>   
+</g>  
+</svg>
